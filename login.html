@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <meta name="description" content="Sign in or create your NexTech News account to unlock personalized news feeds and premium services." />
+  <title>Sign In – NexTech News</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+    .auth-page {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: clamp(80px, 12vw, 120px) clamp(16px, 4vw, 32px) 48px;
+      background: radial-gradient(ellipse 120% 80% at 50% 0%, rgba(0,170,255,0.08), transparent 70%),
+                  radial-gradient(ellipse 60% 60% at 90% 80%, rgba(124,58,237,0.08), transparent 70%);
+      position: relative; min-height: 100vh;
+    }
+    .auth-bg-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .auth-card {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 480px;
+      background: var(--bg-card);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: clamp(28px, 5vw, 48px);
+      box-shadow: var(--shadow), 0 0 60px rgba(0,170,255,0.06);
+    }
+    .auth-logo { text-align: center; margin-bottom: 24px; }
+    .auth-logo img { width: 52px; height: 52px; border-radius: 12px; margin: 0 auto 10px; display: block; }
+    .auth-logo h1 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; }
+    .auth-logo p { font-size: 0.88rem; color: var(--text-secondary); margin-top: 4px; }
+    .auth-tabs {
+      display: flex; background: rgba(255,255,255,0.04);
+      border-radius: 10px; padding: 4px; margin-bottom: 28px;
+      gap: 4px;
+    }
+    .auth-tabs button {
+      flex: 1; padding: 10px 14px;
+      border-radius: 8px; font-size: 0.9rem; font-weight: 600;
+      background: transparent; color: var(--text-secondary);
+      border: none; cursor: pointer; transition: var(--transition);
+    }
+    .auth-tabs button.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; box-shadow: 0 2px 12px var(--primary-glow);
+    }
+    .auth-form { display: none; animation: formFadeIn 0.4s ease; }
+    .auth-form.form-active { display: block; }
+    @keyframes formFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+    .social-logins { display: flex; gap: 10px; margin-bottom: 20px; }
+    .social-btn {
+      flex: 1; padding: 11px 10px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem; font-weight: 600; color: var(--text-primary);
+      cursor: pointer; transition: var(--transition);
+    }
+    .social-btn:hover { background: rgba(0,170,255,0.08); border-color: var(--primary); }
+    .divider-or {
+      display: flex; align-items: center; gap: 12px;
+      margin: 18px 0; color: var(--text-muted); font-size: 0.8rem;
+    }
+    .divider-or::before, .divider-or::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
+    .btn-login-submit {
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; border-radius: 99px;
+      font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: var(--transition);
+      box-shadow: 0 0 20px var(--primary-glow);
+      border: none; margin-top: 6px; font-family: var(--font-main);
+    }
+    .btn-login-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 28px var(--primary-glow); }
+    .auth-switch { text-align: center; margin-top: 20px; font-size: 0.88rem; color: var(--text-secondary); }
+    .auth-switch button { background: none; border: none; color: var(--primary); font-weight: 600; cursor: pointer; text-decoration: underline; }
+    .forgot-link { float: right; font-size: 0.8rem; color: var(--primary); }
+    .forgot-link:hover { opacity: 0.8; }
+    .strength-wrap { margin-top: 8px; }
+    .strength-bar-bg { height: 4px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 4px; }
+    #strengthBar { height: 100%; width: 0%; border-radius: 99px; transition: all 0.3s ease; }
+    #strengthText { font-size: 0.75rem; color: var(--text-muted); }
+    .checkbox-wrap { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+    .checkbox-wrap input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
+    .checkbox-wrap label { font-size: 0.85rem; color: var(--text-secondary); cursor: pointer; }
+    .checkbox-wrap a { color: var(--primary); }
+  </style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <img src="images/logo.png" alt="NexTech" class="preloader-logo" />
+  <div class="preloader-bar-wrap"><div class="preloader-bar"></div></div>
+  <p class="preloader-text">NexTech Auth</p>
+</div>
+
+<!-- Navbar (minimal) -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="NexTech Logo" />
+    <span class="nav-logo-text">NexTech News</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="index.html">🏠 Home</a>
+  <a href="news.html">📰 News</a>
+  <a href="services.html">⚙️ Services</a>
+  <a href="about.html">👥 About</a>
+  <a href="contact.html">✉️ Contact</a>
+</div>
+
+<!-- Auth Page -->
+<div class="auth-page">
+  <!-- Background particles -->
+  <div class="auth-bg-particles" id="authParticles"></div>
+
+  <div class="auth-card">
+    <div class="auth-logo">
+      <img src="images/logo.png" alt="NexTech" />
+      <h1 class="text-gradient">Welcome to NexTech</h1>
+      <p>Your gateway to the latest technology news</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button id="loginTab" class="active" onclick="void(0)">Sign In</button>
+      <button id="signupTab" onclick="void(0)">Create Account</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="auth-form form-active" id="loginForm">
+      <div class="social-logins">
+        <button class="social-btn">G Google</button>
+        <button class="social-btn">⌨ GitHub</button>
+      </div>
+      <div class="divider-or">or sign in with email</div>
+      <form id="loginFormEl" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Address</label>
+          <div class="form-icon">
+            <span class="form-icon-el">✉</span>
+            <input class="form-input" type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">
+            Password
+            <a href="404.html" class="forgot-link">Forgot?</a>
+          </label>
+          <div class="form-icon">
+            <span class="form-icon-el">🔒</span>
+            <input class="form-input" type="password" id="loginPassword" placeholder="Min. 6 characters" autocomplete="current-password" />
+          </div>
+        </div>
+        <div class="checkbox-wrap">
+          <input type="checkbox" id="remember" />
+          <label for="remember">Keep me signed in</label>
+        </div>
+        <button type="submit" class="btn-login-submit" style="margin-top:18px">Sign In →</button>
+      </form>
+      <div class="auth-switch">
+        Don't have an account? <button id="switchToSignup">Create one free</button>
+      </div>
+    </div>
+
+    <!-- SIGNUP FORM -->
+    <div class="auth-form" id="signupForm">
+      <div class="social-logins">
+        <button class="social-btn">G Google</button>
+        <button class="social-btn">⌨ GitHub</button>
+      </div>
+      <div class="divider-or">or sign up with email</div>
+      <form id="signupFormEl" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="signupName">Full Name</label>
+          <div class="form-icon">
+            <span class="form-icon-el">👤</span>
+            <input class="form-input" type="text" id="signupName" placeholder="Your full name" autocomplete="name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signupEmail">Email Address</label>
+          <div class="form-icon">
+            <span class="form-icon-el">✉</span>
+            <input class="form-input" type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signupPassword">Create Password</label>
+          <div class="form-icon">
+            <span class="form-icon-el">🔒</span>
+            <input class="form-input" type="password" id="signupPassword" placeholder="Min. 8 characters" autocomplete="new-password" />
+          </div>
+          <div class="strength-wrap">
+            <div class="strength-bar-bg"><div id="strengthBar"></div></div>
+            <span id="strengthText"></span>
+          </div>
+        </div>
+        <div class="checkbox-wrap">
+          <input type="checkbox" id="terms" required />
+          <label for="terms">I agree to the <a href="404.html">Terms of Service</a> &amp; <a href="404.html">Privacy Policy</a></label>
+        </div>
+        <button type="submit" class="btn-login-submit" style="margin-top:18px">Create Account →</button>
+      </form>
+      <div class="auth-switch">
+        Already have an account? <button id="switchToLogin">Sign in</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer minimal -->
+<div style="text-align:center; padding:16px; font-size:0.8rem; color:var(--text-muted); border-top:1px solid var(--border2);">
+  © 2026 NexTech News · <a href="404.html" style="color:var(--text-muted)">Privacy</a> · <a href="404.html" style="color:var(--text-muted)">Terms</a>
+</div>
+
+<button id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<script src="js/main.js"></script>
+<script>
+  // Generate floating particles
+  const container = document.getElementById('authParticles');
+  if (container) {
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 5 + 2;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random()*100}%;
+        bottom:${Math.random()*30}%;
+        animation-duration:${5+Math.random()*8}s;
+        animation-delay:${Math.random()*6}s;
+        opacity:${0.2+Math.random()*0.4};
+      `;
+      container.appendChild(p);
+    }
+  }
+  // Signup form submit
+  const signupFormEl = document.getElementById('signupFormEl');
+  if (signupFormEl) {
+    signupFormEl.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = signupFormEl.querySelector('[type="submit"]');
+      btn.textContent = '✓ Account Created!';
+      btn.style.background = 'linear-gradient(135deg, var(--accent2), #059669)';
+      setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+    });
+  }
+</script>
+</body>
+</html>
