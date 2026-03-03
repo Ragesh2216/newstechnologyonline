@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="description" content="Page not found - NexTech News" />
+    <title>404 - Page Not Found | NexTech News</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh
+        }
+
+        .err-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .err-bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124, 58, 237, .12), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: pulseGlow 4s ease-in-out infinite
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: .6;
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1)
+            }
+        }
+
+        .err-number {
+            font-size: clamp(7rem, 18vw, 12rem);
+            font-weight: 900;
+            line-height: 1;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -4px;
+            position: relative;
+            animation: floatNum 3s ease-in-out infinite
+        }
+
+        @keyframes floatNum {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-16px)
+            }
+        }
+
+        .err-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+            animation: spinSlowly 8s linear infinite
+        }
+
+        @keyframes spinSlowly {
+            0% {
+                transform: rotate(0)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        .err-title {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-top: 12px;
+            margin-bottom: 14px
+        }
+
+        .err-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 36px
+        }
+
+        .err-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 56px
+        }
+
+        .err-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 4px;
+            margin: 0 auto 32px
+        }
+
+        .err-links-title {
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 20px
+        }
+
+        .err-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center
+        }
+
+        .err-link {
+            padding: 10px 22px;
+            border-radius: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 500;
+            transition: all .3s;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .err-link:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            transform: translateY(-2px)
+        }
+
+        .err-search {
+            display: flex;
+            gap: 0;
+            max-width: 440px;
+            width: 100%;
+            margin: 0 auto 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--card-bg)
+        }
+
+        .err-search input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 13px 18px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: .95rem
+        }
+
+        .err-search input::placeholder {
+            color: var(--text-muted)
+        }
+
+        .err-search button {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 13px 22px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: .9rem;
+            transition: opacity .2s
+        }
+
+        .err-search button:hover {
+            opacity: .85
+        }
+
+        .floating-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: .4;
+            animation: floatParticle var(--dur, 6s) ease-in-out var(--delay, 0s) infinite
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0
+            }
+
+            10% {
+                opacity: .4
+            }
+
+            90% {
+                opacity: .3
+            }
+
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <img src="logo.webp" alt="NexTech" class="preloader-logo" />
+        <div class="preloader-bar-wrap">
+            <div class="preloader-bar"></div>
+        </div>
+        <p class="preloader-text">Loading NexTech</p>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="logo.webp" alt="NexTech Logo" />
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="tech.html">Technology</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <a href="login.html" class="btn-nav-login">Sign In</a>
+            <button class="nav-hamburger" id="hamburger"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="nav-mobile" id="mobileNav">
+        <a href="index.html">🏠 Home</a>
+        <a href="news.html">📰 News</a>
+        <a href="tech.html">💻 Technology</a>
+        <a href="services.html">⚙️ Services</a>
+        <a href="about.html">👥 About</a>
+        <a href="contact.html">✉️ Contact</a>
+        <a href="login.html" class="btn-nav-login">Sign In</a>
+    </div>
+
+    <div class="err-wrap">
+        <!-- Floating particles -->
+        <div class="floating-particles" id="particles"></div>
+        <div class="err-bg-glow"></div>
+
+        <div class="err-icon">🛸</div>
+        <div class="err-number">404</div>
+        <h1 class="err-title">This Page Got Lost in Cyberspace</h1>
+        <p class="err-desc">The page you're looking for seems to have drifted off into the digital void. It may have
+            been moved, deleted, or perhaps it never existed — like a blockchain without any blocks.</p>
+
+        <!-- Search bar -->
+        <form class="err-search" id="errSearch">
+            <input type="text" id="errQuery" placeholder="Search for something else…" />
+            <button type="submit">Search 🔍</button>
+        </form>
+
+        <!-- CTA buttons -->
+        <div class="err-actions">
+            <a href="index.html" class="btn btn-primary">🏠 Back to Home</a>
+            <a href="news.html" class="btn btn-outline">📰 Read Latest News</a>
+        </div>
+
+        <div class="err-divider"></div>
+        <div class="err-links-title">Popular Pages</div>
+        <div class="err-links">
+            <a href="news.html" class="err-link">📰 News</a>
+            <a href="tech.html" class="err-link">💻 Technology</a>
+            <a href="services.html" class="err-link">⚙️ Services</a>
+            <a href="about.html" class="err-link">👥 About</a>
+            <a href="contact.html" class="err-link">✉️ Contact</a>
+            <a href="login.html" class="err-link">🔑 Sign In</a>
+        </div>
+    </div>
+
+    <!-- Footer (minimal) -->
+    <footer class="footer">
+        <div class="footer-bottom" style="border-top:1px solid var(--border)">
+            <p>© 2026 NexTech News. All rights reserved.</p>
+            <div style="display:flex;gap:16px">
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Scroll to top">↑</button>
+    <script src="js/main.js"></script>
+    <script>
+        // Generate floating particles
+        const container = document.getElementById('particles');
+        const colors = ['#0077cc', '#7c3aed', '#10b981', '#f43f5e', '#fbbf24'];
+        for (let i = 0; i < 18; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.setProperty('--dur', (4 + Math.random() * 6) + 's');
+            p.style.setProperty('--delay', (Math.random() * 5) + 's');
+            p.style.background = colors[Math.floor(Math.random() * colors.length)];
+            p.style.width = p.style.height = (4 + Math.random() * 8) + 'px';
+            container.appendChild(p);
+        }
+        // Search redirect
+        document.getElementById('errSearch').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const q = document.getElementById('errQuery').value.trim();
+            if (q) window.location.href = 'news.html';
+        });
+    </script>
+</body>
+
+</html>

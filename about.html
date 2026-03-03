@@ -1,0 +1,790 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="description" content="About NexTech News - Our mission, team, milestones and values." />
+    <title>About Us - NexTech News</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+        .about-hero {
+            padding: 140px 20px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 119, 204, .12), rgba(124, 58, 237, .12));
+            position: relative;
+            overflow: hidden
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(124, 58, 237, .15), transparent);
+            pointer-events: none
+        }
+
+        .about-hero-tag {
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin: 0 auto 20px;
+            max-width: 700px
+        }
+
+        .about-hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+            margin-top: 48px
+        }
+
+        .mission-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 28px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s, box-shadow .3s
+        }
+
+        .mission-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 119, 204, .15)
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 20px 20px 0 0
+        }
+
+        .mission-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px
+        }
+
+        .mission-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px
+        }
+
+        .mission-card p {
+            color: var(--text-secondary);
+            line-height: 1.7
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 28px;
+            margin-top: 48px
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 20px 24px;
+            text-align: center;
+            transition: transform .3s, box-shadow .3s
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .3)
+        }
+
+        .team-avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            position: relative
+        }
+
+        .team-avatar::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            z-index: -1
+        }
+
+        .team-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px
+        }
+
+        .team-role {
+            font-size: .82rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            margin-bottom: 12px
+        }
+
+        .team-bio {
+            font-size: .88rem;
+            color: var(--text-secondary);
+            line-height: 1.6
+        }
+
+        .team-socials {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px
+        }
+
+        .team-socials a {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all .3s
+        }
+
+        .team-socials a:hover {
+            background: var(--gradient-primary);
+            color: #fff;
+            border-color: transparent
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 760px;
+            margin: 48px auto 0;
+            padding: 0 20px
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+            transform: translateX(-50%)
+        }
+
+        .tl-item {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 48px;
+            position: relative
+        }
+
+        .tl-item:nth-child(odd) {
+            flex-direction: row-reverse;
+            text-align: right
+        }
+
+        .tl-item:nth-child(odd) .tl-content {
+            align-items: flex-end
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: 50%;
+            top: 8px;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: 3px solid var(--bg-primary);
+            z-index: 1;
+            flex-shrink: 0
+        }
+
+        .tl-side {
+            width: calc(50% - 28px);
+            flex-shrink: 0
+        }
+
+        .tl-content {
+            display: flex;
+            flex-direction: column
+        }
+
+        .tl-year {
+            font-size: .8rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px
+        }
+
+        .tl-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px
+        }
+
+        .tl-desc {
+            font-size: .88rem;
+            color: var(--text-secondary);
+            line-height: 1.6
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 24px;
+            margin-top: 48px
+        }
+
+        .value-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 22px;
+            text-align: center;
+            transition: transform .3s
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px)
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            margin-bottom: 14px;
+            display: block
+        }
+
+        .value-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px
+        }
+
+        .value-card p {
+            font-size: .88rem;
+            color: var(--text-secondary);
+            line-height: 1.6
+        }
+
+        .partners-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 48px
+        }
+
+        .partner-chip {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 28px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            transition: all .3s
+        }
+
+        .partner-chip:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            transform: scale(1.05)
+        }
+
+        .about-cta {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 119, 204, .1), rgba(124, 58, 237, .1));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px 32px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .about-cta h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px
+        }
+
+        .about-cta p {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 28px;
+            line-height: 1.7
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        @media(max-width:640px) {
+            .timeline::before {
+                left: 20px
+            }
+
+            .tl-item,
+            .tl-item:nth-child(odd) {
+                flex-direction: column;
+                text-align: left;
+                padding-left: 44px
+            }
+
+            .tl-dot {
+                left: 20px
+            }
+
+            .tl-side {
+                width: 100%
+            }
+
+            .tl-item:nth-child(odd) .tl-content {
+                align-items: flex-start
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <img src="logo.webp" alt="NexTech" class="preloader-logo" />
+        <div class="preloader-bar-wrap">
+            <div class="preloader-bar"></div>
+        </div>
+        <p class="preloader-text">Loading NexTech</p>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="logo.webp" alt="NexTech Logo" />
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="tech.html">Technology</a>
+            <a href="services.html">Services</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <a href="login.html" class="btn-nav-login">Sign In</a>
+            <button class="nav-hamburger" id="hamburger"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="nav-mobile" id="mobileNav">
+        <a href="index.html">🏠 Home</a>
+        <a href="news.html">📰 News</a>
+        <a href="tech.html">💻 Technology</a>
+        <a href="services.html">⚙️ Services</a>
+        <a href="about.html">👥 About</a>
+        <a href="contact.html">✉️ Contact</a>
+        <a href="login.html" class="btn-nav-login">Sign In</a>
+    </div>
+
+    <section class="about-hero">
+        <div class="about-hero-tag">Our Story</div>
+        <h1>Powering the World's <span class="gradient-text">Tech Story</span></h1>
+        <p>Since 2019, NexTech News has been the definitive destination for technology journalism — delivering clarity,
+            depth, and perspective to millions of curious minds around the globe.</p>
+    </section>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <span class="section-tag">What Drives Us</span>
+            <h2 class="section-title">Our <span>Mission</span></h2>
+            <p class="section-desc">Three pillars that guide everything we do at NexTech News.</p>
+        </div>
+        <div class="mission-grid">
+            <div class="mission-card reveal">
+                <div class="mission-icon">🎯</div>
+                <h3>Our Mission</h3>
+                <p>To democratize access to technology journalism — making complex innovations understandable,
+                    accessible, and meaningful for everyone from developers to curious readers worldwide.</p>
+            </div>
+            <div class="mission-card reveal">
+                <div class="mission-icon">🔭</div>
+                <h3>Our Vision</h3>
+                <p>A world where every person has the knowledge to participate in the digital future — a global
+                    community empowered by accurate, timely, and inspiring technology media.</p>
+            </div>
+            <div class="mission-card reveal">
+                <div class="mission-icon">💡</div>
+                <h3>Our Promise</h3>
+                <p>We will never compromise on editorial integrity. Every story is fact-checked, independently verified,
+                    and free from commercial influence — because truth matters in the age of AI.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <span class="section-tag">By the Numbers</span>
+            <h2 class="section-title">NexTech by <span>the Numbers</span></h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-num text-gradient" data-count="1200" data-suffix="K+">0</div>
+                <div class="stat-label">Monthly Readers</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-num text-gradient" data-count="48" data-suffix="">0</div>
+                <div class="stat-label">Countries Covered</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-num text-gradient" data-count="12500" data-suffix="+">0</div>
+                <div class="stat-label">Articles Published</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-num text-gradient" data-count="7" data-suffix="">0</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <span class="section-tag">The People</span>
+            <h2 class="section-title">Meet the <span>Team</span></h2>
+            <p class="section-desc">Journalists, engineers, and innovators united by a passion for technology
+                storytelling.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#0077cc,#7c3aed)">👩‍💼</div>
+                <h4>Aisha Patel</h4>
+                <div class="team-role">CEO &amp; Editor-in-Chief</div>
+                <p class="team-bio">Former MIT Media Lab researcher turned tech journalist. 15+ years shaping digital
+                    narratives.</p>
+                <div class="team-socials"><a href="#">𝕏</a><a href="#">in</a></div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#f43f5e,#7c3aed)">👨‍💻</div>
+                <h4>Marcus Chen</h4>
+                <div class="team-role">CTO &amp; Head of Engineering</div>
+                <p class="team-bio">Ex-Google engineer. Architected NexTech's real-time news infrastructure serving 1.2M
+                    users.</p>
+                <div class="team-socials"><a href="#">⌨</a><a href="#">in</a></div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#10b981,#0077cc)">👩‍🔬</div>
+                <h4>Dr. Lena Vasquez</h4>
+                <div class="team-role">Head of AI &amp; Research</div>
+                <p class="team-bio">PhD in Machine Learning from Stanford. Leads our AI-powered content curation and
+                    analysis engine.</p>
+                <div class="team-socials"><a href="#">𝕏</a><a href="#">in</a></div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#fb923c,#fbbf24)">👨‍🎨</div>
+                <h4>James Okafor</h4>
+                <div class="team-role">Creative Director</div>
+                <p class="team-bio">Award-winning designer who brought NexTech's visual identity to life. Former head of
+                    design at Wired.</p>
+                <div class="team-socials"><a href="#">📷</a><a href="#">in</a></div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">👩‍📝</div>
+                <h4>Sofia Reinhart</h4>
+                <div class="team-role">Senior Tech Correspondent</div>
+                <p class="team-bio">Covers AI, cybersecurity, and global tech policy. Has interviewed 300+ CEOs and tech
+                    leaders.</p>
+                <div class="team-socials"><a href="#">𝕏</a><a href="#">in</a></div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#fbbf24,#f43f5e)">👨‍📊</div>
+                <h4>Ravi Nair</h4>
+                <div class="team-role">Head of Product &amp; Analytics</div>
+                <p class="team-bio">Product strategist who grew NexTech's subscriber base by 400% in two years through
+                    data-driven decisions.</p>
+                <div class="team-socials"><a href="#">in</a><a href="#">𝕏</a></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <span class="section-tag">Our Journey</span>
+            <h2 class="section-title">Milestones &amp; <span>History</span></h2>
+            <p class="section-desc">From a two-person newsletter to the world's leading tech news platform.</p>
+        </div>
+        <div class="timeline">
+            <div class="tl-item reveal">
+                <div class="tl-side">
+                    <div class="tl-content">
+                        <div class="tl-year">2019</div>
+                        <div class="tl-title">🚀 Founded in San Francisco</div>
+                        <p class="tl-desc">Aisha and Marcus launch NexTech as a weekly newsletter from a garage with
+                            just 500 subscribers.</p>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+                <div class="tl-side"></div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-side"></div>
+                <div class="tl-dot"></div>
+                <div class="tl-side">
+                    <div class="tl-content">
+                        <div class="tl-year">2020</div>
+                        <div class="tl-title">📈 100K Readers Milestone</div>
+                        <p class="tl-desc">Pivoted to a full web platform during the pandemic. Reached 100,000 monthly
+                            readers in 8 months and closed $1.2M in seed funding.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-side">
+                    <div class="tl-content">
+                        <div class="tl-year">2021</div>
+                        <div class="tl-title">🤖 AI Curation Engine Launched</div>
+                        <p class="tl-desc">Dr. Lena Vasquez joins. NexTech launches its proprietary AI-powered news
+                            curation engine.</p>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+                <div class="tl-side"></div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-side"></div>
+                <div class="tl-dot"></div>
+                <div class="tl-side">
+                    <div class="tl-content">
+                        <div class="tl-year">2022</div>
+                        <div class="tl-title">💰 Series A: $18M Raised</div>
+                        <p class="tl-desc">Raised $18M from Sequoia and a16z. Expanded to 45 journalists across 12
+                            countries.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-side">
+                    <div class="tl-content">
+                        <div class="tl-year">2023</div>
+                        <div class="tl-title">📡 News API Platform</div>
+                        <p class="tl-desc">Launched NexTech Developer Platform. 500+ companies now power their products
+                            with our real-time News API.</p>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+                <div class="tl-side"></div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-side"></div>
+                <div class="tl-dot"></div>
+                <div class="tl-side">
+                    <div class="tl-content">
+                        <div class="tl-year">2024</div>
+                        <div class="tl-title">🌍 1 Million Readers</div>
+                        <p class="tl-desc">Crossed 1M monthly active readers. Won "Best Tech Publication" at Digital
+                            Media Awards for the second year running.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-side">
+                    <div class="tl-content">
+                        <div class="tl-year">2026</div>
+                        <div class="tl-title">🎯 1.2M+ &amp; Growing</div>
+                        <p class="tl-desc">With 1.2M+ monthly readers, offices in SF, London, and Singapore, and 12,500+
+                            articles published — the mission continues.</p>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+                <div class="tl-side"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <span class="section-tag">What We Believe</span>
+            <h2 class="section-title">Our Core <span>Values</span></h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card reveal"><span class="value-icon">🛡️</span>
+                <h4>Editorial Independence</h4>
+                <p>No advertiser influences our coverage. Our newsroom operates with complete autonomy from commercial
+                    operations.</p>
+            </div>
+            <div class="value-card reveal"><span class="value-icon">⚡</span>
+                <h4>Speed &amp; Accuracy</h4>
+                <p>We break stories fast, but never at the expense of accuracy. Every fact is verified before
+                    publication.</p>
+            </div>
+            <div class="value-card reveal"><span class="value-icon">🌍</span>
+                <h4>Global Perspective</h4>
+                <p>Technology is borderless. We cover stories from every continent, ensuring diverse voices are heard.
+                </p>
+            </div>
+            <div class="value-card reveal"><span class="value-icon">♿</span>
+                <h4>Accessibility</h4>
+                <p>Great tech journalism should be free and accessible to everyone, regardless of geography or income.
+                </p>
+            </div>
+            <div class="value-card reveal"><span class="value-icon">🔬</span>
+                <h4>Innovation</h4>
+                <p>We use the very technology we report on — AI, data analytics, real-time systems — to deliver better
+                    journalism.</p>
+            </div>
+            <div class="value-card reveal"><span class="value-icon">🤝</span>
+                <h4>Community First</h4>
+                <p>Our readers are our community. We listen, engage, and build features based on what matters most to
+                    you.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <span class="section-tag">Trusted By</span>
+            <h2 class="section-title">Our <span>Partners</span></h2>
+            <p class="section-desc">Industry leaders who power and trust the NexTech platform.</p>
+        </div>
+        <div class="partners-row reveal">
+            <div class="partner-chip">Google</div>
+            <div class="partner-chip">Microsoft</div>
+            <div class="partner-chip">Amazon AWS</div>
+            <div class="partner-chip">Cloudflare</div>
+            <div class="partner-chip">IBM Research</div>
+            <div class="partner-chip">NVIDIA</div>
+            <div class="partner-chip">Sequoia Capital</div>
+            <div class="partner-chip">OpenAI</div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+        <div class="about-cta reveal">
+            <h2>Ready to Join the <span class="gradient-text">NexTech Community</span>?</h2>
+            <p>Stay ahead of the curve with daily AI-curated tech news, exclusive reports, and a global community of
+                innovators.</p>
+            <div class="cta-btns">
+                <a href="login.html" class="btn btn-primary">🚀 Create Free Account</a>
+                <a href="contact.html" class="btn btn-outline">✉️ Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo" style="margin-bottom:0">
+                    <img src="logo.webp" alt="NexTech" style="height:32px;width:auto;object-fit:contain" />
+                </a>
+                <p>The world's leading technology news and digital services platform.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">𝕏</a>
+                    <a href="#" class="social-icon">in</a>
+                    <a href="#" class="social-icon">⌨</a>
+                    <a href="#" class="social-icon">▶</a>
+                    <a href="#" class="social-icon">📷</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Content</h4>
+                <ul>
+                    <li><a href="news.html">Latest News</a></li>
+                    <li><a href="tech.html">Technology</a></li>
+                    <li><a href="article.html">AI &amp; ML</a></li>
+                    <li><a href="news.html">Cybersecurity</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">News API</a></li>
+                    <li><a href="services.html">Analytics</a></li>
+                    <li><a href="services.html">Newsletter</a></li>
+                    <li><a href="services.html">Press Release</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NexTech News. All rights reserved.</p>
+            <div style="display:flex;gap:16px"><a href="#">Privacy</a><a href="#">Terms</a><a
+                    href="contact.html">Support</a></div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Scroll to top">↑</button>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
