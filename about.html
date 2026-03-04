@@ -415,7 +415,14 @@
             <img src="logo.webp" alt="NexTech Logo" />
         </a>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+        <div class="nav-dropdown" id="homeDropdown">
+      <div class="nav-dropdown-trigger" id="homeDropdownTrigger">
+        Home <span class="nav-dropdown-arrow">▼</span>
+      </div>
+      <div class="nav-dropdown-menu">
+        <a href="home2.html"><span class="dd-icon">🏡</span> Home 2</a>
+        
+    </div>
             <a href="news.html">News</a>
             <a href="tech.html">Technology</a>
             <a href="services.html">Services</a>
@@ -430,7 +437,10 @@
     </nav>
 
     <div class="nav-mobile" id="mobileNav">
-        <a href="index.html">🏠 Home</a>
+      <a href="index.html">🏠 Home</a>
+  <a href="home2.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🏡 Home 2</a>
+  <a href="dashboard.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 📊 Dashboard</a>
+  <a href="login.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🔑 Login</a>
         <a href="news.html">📰 News</a>
         <a href="tech.html">💻 Technology</a>
         <a href="services.html">⚙️ Services</a>
@@ -512,7 +522,7 @@
         </div>
         <div class="team-grid">
             <div class="team-card reveal">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#0077cc,#7c3aed)">👩‍💼</div>
+                <img src="images/team-1.webp" alt="Aisha Patel" class="team-avatar" style="object-fit:cover" />
                 <h4>Aisha Patel</h4>
                 <div class="team-role">CEO &amp; Editor-in-Chief</div>
                 <p class="team-bio">Former MIT Media Lab researcher turned tech journalist. 15+ years shaping digital
@@ -520,7 +530,7 @@
                 <div class="team-socials"><a href="#">𝕏</a><a href="#">in</a></div>
             </div>
             <div class="team-card reveal">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#f43f5e,#7c3aed)">👨‍💻</div>
+                <img src="images/team-2.webp" alt="Marcus Chen" class="team-avatar" style="object-fit:cover" />
                 <h4>Marcus Chen</h4>
                 <div class="team-role">CTO &amp; Head of Engineering</div>
                 <p class="team-bio">Ex-Google engineer. Architected NexTech's real-time news infrastructure serving 1.2M
@@ -528,7 +538,7 @@
                 <div class="team-socials"><a href="#">⌨</a><a href="#">in</a></div>
             </div>
             <div class="team-card reveal">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#10b981,#0077cc)">👩‍🔬</div>
+                <img src="images/team-4.webp" alt="Dr. Lena Vasquez" class="team-avatar" style="object-fit:cover" />
                 <h4>Dr. Lena Vasquez</h4>
                 <div class="team-role">Head of AI &amp; Research</div>
                 <p class="team-bio">PhD in Machine Learning from Stanford. Leads our AI-powered content curation and
@@ -536,7 +546,7 @@
                 <div class="team-socials"><a href="#">𝕏</a><a href="#">in</a></div>
             </div>
             <div class="team-card reveal">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#fb923c,#fbbf24)">👨‍🎨</div>
+                <img src="images/team-3.webp" alt="James Okafor" class="team-avatar" style="object-fit:cover" />
                 <h4>James Okafor</h4>
                 <div class="team-role">Creative Director</div>
                 <p class="team-bio">Award-winning designer who brought NexTech's visual identity to life. Former head of
@@ -544,7 +554,7 @@
                 <div class="team-socials"><a href="#">📷</a><a href="#">in</a></div>
             </div>
             <div class="team-card reveal">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">👩‍📝</div>
+                <img src="images/team-1.webp" alt="Sofia Reinhart" class="team-avatar" style="object-fit:cover" />
                 <h4>Sofia Reinhart</h4>
                 <div class="team-role">Senior Tech Correspondent</div>
                 <p class="team-bio">Covers AI, cybersecurity, and global tech policy. Has interviewed 300+ CEOs and tech
@@ -552,7 +562,7 @@
                 <div class="team-socials"><a href="#">𝕏</a><a href="#">in</a></div>
             </div>
             <div class="team-card reveal">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#fbbf24,#f43f5e)">👨‍📊</div>
+                <img src="images/team-2.webp" alt="Ravi Nair" class="team-avatar" style="object-fit:cover" />
                 <h4>Ravi Nair</h4>
                 <div class="team-role">Head of Product &amp; Analytics</div>
                 <p class="team-bio">Product strategist who grew NexTech's subscriber base by 400% in two years through

@@ -1,0 +1,992 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="description"
+        content="NexTech News – Your alternative home for cutting-edge technology journalism, deep dives, and exclusive analysis." />
+    <title>Home 2 – NexTech News</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+        /* ── Hero Magazine ── */
+        .h2-hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+        }
+
+        .h2-hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: clamp(48px, 8vw, 96px) clamp(24px, 5vw, 72px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .h2-hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .h2-hero-right-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
+        }
+
+        .h2-hero-art {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .h2-floating-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(0, 170, 255, 0.2);
+            border-radius: 16px;
+            padding: 18px 22px;
+            width: 280px;
+            backdrop-filter: blur(10px);
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        .h2-floating-card:nth-child(2) {
+            animation-delay: 1.3s;
+            animation-duration: 5s;
+        }
+
+        .h2-floating-card:nth-child(3) {
+            animation-delay: 0.7s;
+            animation-duration: 4.5s;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(1deg);
+            }
+        }
+
+        .h2-fc-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .h2-fc-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .h2-fc-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .h2-fc-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex-shrink: 0;
+            animation: livePulse 1.5s ease infinite;
+        }
+
+        .h2-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 170, 255, 0.1);
+            border: 1px solid rgba(0, 170, 255, 0.3);
+            border-radius: 99px;
+            padding: 6px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .h2-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--primary);
+            animation: livePulse 1.5s ease infinite;
+        }
+
+        .h2-hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .h2-hero-title .line2 {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .h2-hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 480px;
+            margin-bottom: 36px;
+        }
+
+        .h2-hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .h2-ticker-mini {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border2);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            overflow: hidden;
+        }
+
+        .h2-ticker-label {
+            color: var(--primary);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .h2-ticker-scroll {
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .h2-ticker-inner {
+            white-space: nowrap;
+            animation: tickerScroll 20s linear infinite;
+            display: inline-block;
+        }
+
+        /* glowing grid bg */
+        .h2-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(0, 170, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 170, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .h2-hero-left-grad {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 200px;
+            background: linear-gradient(90deg, transparent, var(--bg-dark));
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* ── Magazine Feature Grid ── */
+        .mag-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .mag-feature {
+            grid-row: 1 / 3;
+            background: var(--bg-card);
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .mag-feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .mag-feature-img {
+            height: 280px;
+            background: linear-gradient(135deg, #0a1628, #1a2a4a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mag-feature-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(transparent, var(--bg-card));
+        }
+
+        .mag-feature-body {
+            padding: 24px;
+        }
+
+        .mag-feature-body h2 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.3;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+
+        .mag-feature:hover .mag-feature-body h2 {
+            color: var(--primary);
+        }
+
+        .mag-feature-body p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .mag-side-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            display: flex;
+            gap: 16px;
+            padding: 18px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .mag-side-card:hover {
+            border-color: rgba(0, 170, 255, 0.3);
+            transform: translateX(4px);
+        }
+
+        .mag-side-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .mag-side-body h4 {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .mag-side-body p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ── Trending sidebar layout ── */
+        .h2-content-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 36px;
+            align-items: start;
+        }
+
+        .trending-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .trending-row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border2);
+        }
+
+        .trending-row:last-child {
+            border-bottom: none;
+        }
+
+        .tr-num {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: rgba(0, 170, 255, 0.15);
+            line-height: 1;
+            min-width: 36px;
+            padding-top: 2px;
+        }
+
+        .tr-body h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .tr-body h4:hover {
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .tr-meta {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+        }
+
+        /* ── Topics mosaic ── */
+        .topics-mosaic {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .topic-tile {
+            border-radius: 16px;
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .topic-tile:hover {
+            transform: scale(1.03);
+        }
+
+        .topic-tile-icon {
+            font-size: 2rem;
+        }
+
+        .topic-tile-name {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .topic-tile-count {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .topic-tile-arrow {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .topic-tile:hover .topic-tile-arrow {
+            opacity: 0.7;
+            right: 12px;
+        }
+
+        /* ── Newsletter banner ── */
+        .h2-newsletter {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(0, 170, 255, 0.08), rgba(124, 58, 237, 0.08));
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            padding: 40px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .h2-newsletter::before {
+            content: '📬';
+            position: absolute;
+            right: 180px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 6rem;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .h2-newsletter h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .h2-newsletter p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .h2-nl-form {
+            display: flex;
+            gap: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border2);
+            flex-shrink: 0;
+        }
+
+        .h2-nl-form input {
+            background: rgba(255, 255, 255, 0.04);
+            border: none;
+            padding: 13px 18px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            width: 240px;
+            outline: none;
+        }
+
+        .h2-nl-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .h2-nl-form button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 13px 24px;
+            color: #fff;
+            font-weight: 700;
+            font-family: var(--font-main);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .h2-nl-form button:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 900px) {
+            .h2-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .h2-hero-right {
+                display: none;
+            }
+
+            .h2-content-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .mag-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mag-feature {
+                grid-row: auto;
+            }
+
+            .topics-mosaic {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .h2-newsletter {
+                grid-template-columns: 1fr;
+            }
+
+            .h2-nl-form input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .topics-mosaic {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="logo.webp" alt="NexTech" class="preloader-logo" />
+        <div class="preloader-bar-wrap">
+            <div class="preloader-bar"></div>
+        </div>
+        <p class="preloader-text">NexTech Home 2</p>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="home2.html" class="nav-logo">
+            <img src="logo.webp" alt="NexTech Logo" />
+        </a>
+        <div class="nav-links">
+            <div class="nav-dropdown" id="homeDropdown">
+                <div class="nav-dropdown-trigger" id="homeDropdownTrigger">
+                    Home2 <span class="nav-dropdown-arrow">▼</span>
+                </div>
+                <div class="nav-dropdown-menu">
+                    <a href="index.html"><span class="dd-icon">🏡</span> Home </a>
+                    
+                </div>
+            </div>
+            
+            
+            <a href="dashboard.html">dashboard</a>
+        </div>
+        <div class="nav-actions">
+            <a href="login.html" class="btn-nav-login">Sign In</a>
+            <button class="nav-hamburger" id="hamburger"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="nav-mobile" id="mobileNav">
+        <a href="home2.html">🏠 Home2</a>
+        <a href="index.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🏡 Home </a>
+        <a href="dashboard.html">✉️ dashboard</a>
+        <a href="login.html" class="btn-nav-login">Sign In</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="h2-hero">
+        <div class="h2-hero-left">
+            <div class="h2-badge">
+                <div class="h2-badge-dot"></div> Magazine Edition
+            </div>
+            <h1 class="h2-hero-title">
+                Read Smarter.<br />
+                <span class="line2">Think Deeper.</span><br />
+                Stay Ahead.
+            </h1>
+            <p class="h2-hero-desc">
+                NexTech's magazine view brings you curated long-reads, expert analysis, and exclusive interviews —
+                beyond the daily feed.
+            </p>
+            <div class="h2-hero-actions">
+                <a href="news.html" class="btn btn-primary">📰 Browse Articles</a>
+                <a href="dashboard.html" class="btn btn-outline">📊 My Dashboard</a>
+            </div>
+            <div class="h2-ticker-mini">
+                <span class="h2-ticker-label">🔴 LIVE</span>
+                <div class="h2-ticker-scroll">
+                    <span class="h2-ticker-inner">GPT-5 benchmarks leak online &nbsp;•&nbsp; SpaceX launches 400
+                        Starlink sats &nbsp;•&nbsp; Apple M4 Ultra breaks records &nbsp;•&nbsp; EU AI Act enforcement
+                        begins &nbsp;•&nbsp; Quantum chip hits 1000 qubits &nbsp;&nbsp;&nbsp;</span>
+                </div>
+            </div>
+        </div>
+        <div class="h2-hero-right">
+            <div class="h2-hero-right-bg"></div>
+            <div class="h2-hero-left-grad"></div>
+            <div class="h2-hero-art">
+                <div class="h2-floating-card">
+                    <div class="h2-fc-tag">🤖 Artificial Intelligence</div>
+                    <div class="h2-fc-title">GPT-5 Rewrites the Rules of AGI Research in 2026</div>
+                    <div class="h2-fc-meta">
+                        <div class="h2-fc-dot"></div> 8 min read · Just now
+                    </div>
+                </div>
+                <div class="h2-floating-card">
+                    <div class="h2-fc-tag">🔒 Cybersecurity</div>
+                    <div class="h2-fc-title">Zero-Day Exploit Hits 40M Enterprise Servers Globally</div>
+                    <div class="h2-fc-meta">
+                        <div class="h2-fc-dot"></div> 5 min read · 12 min ago
+                    </div>
+                </div>
+                <div class="h2-floating-card">
+                    <div class="h2-fc-tag">🚀 Startups</div>
+                    <div class="h2-fc-title">Y Combinator W26 Cohort: 10 Startups to Watch</div>
+                    <div class="h2-fc-meta">
+                        <div class="h2-fc-dot"></div> 6 min read · 1 hr ago
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Magazine Grid -->
+    <section class="section">
+        <div class="section-header reveal">
+            <span class="section-tag">Editor's Picks</span>
+            <h2 class="section-title">Featured <span>Stories</span></h2>
+            <p class="section-desc">Hand-selected by our editorial team. The most important stories this week.</p>
+        </div>
+        <div class="mag-grid reveal">
+            <div class="mag-feature">
+                <div class="mag-feature-img" style="background:linear-gradient(135deg,#0a1a35,#1a0a35)">🤖</div>
+                <div class="mag-feature-body">
+                    <span class="card-tag tag-ai">AI</span>
+                    <h2>The Race to AGI: How OpenAI, Google DeepMind, and Anthropic Are Diverging on Safety</h2>
+                    <p>As the three leading AI labs race toward general intelligence, their philosophies on alignment
+                        and safety are diverging in ways that may determine the future of humanity — or threaten it.</p>
+                    <div class="card-meta" style="margin-bottom:16px"><span>🕐 15 min read</span><span>Mar 4,
+                            2026</span><span>By Dr. Lena Vasquez</span></div>
+                    <a href="article.html" class="btn btn-primary" style="font-size:0.85rem;padding:10px 22px">Read Deep
+                        Dive →</a>
+                </div>
+            </div>
+            <a href="article.html" class="mag-side-card">
+                <div class="mag-side-icon"
+                    style="background:linear-gradient(135deg,rgba(244,63,94,.15),rgba(124,58,237,.15))">🔒</div>
+                <div class="mag-side-body">
+                    <span class="card-tag tag-security"
+                        style="margin-bottom:6px;display:inline-block">Cybersecurity</span>
+                    <h4>Nation-State Hackers Target Critical Infrastructure Using AI-Powered Spear Phishing</h4>
+                    <p>State-sponsored groups now use LLMs to craft hyper-personalized attacks at scale.</p>
+                </div>
+            </a>
+            <a href="article.html" class="mag-side-card">
+                <div class="mag-side-icon"
+                    style="background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(0,119,204,.15))">☁️</div>
+                <div class="mag-side-body">
+                    <span class="card-tag tag-cloud" style="margin-bottom:6px;display:inline-block">Cloud</span>
+                    <h4>AWS vs Azure vs GCP 2026: The Ultimate Enterprise Cloud Comparison</h4>
+                    <p>Prices, performance, and AI services benchmarked across 50 real-world workloads.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Trending + Sidebar -->
+    <section class="section" style="padding-top:0">
+        <div class="h2-content-layout">
+            <div>
+                <div class="section-header reveal" style="text-align:left; margin-bottom:28px">
+                    <span class="section-tag">Hot Right Now</span>
+                    <h2 class="section-title">Trending <span>This Week</span></h2>
+                </div>
+                <div class="trending-list reveal">
+                    <div class="trending-row">
+                        <div class="tr-num">01</div>
+                        <div class="tr-body">
+                            <h4>Apple's Vision Pro 2 Ships with Brain-Computer Interface Support — Here's What That
+                                Means</h4>
+                            <div class="tr-meta"><span>📱 Gadgets</span><span>🕐 9 min</span><span>128K views</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trending-row">
+                        <div class="tr-num">02</div>
+                        <div class="tr-body">
+                            <h4>Ethereum 3.0 Goes Live: Gas Fees Drop 99%, Transactions Hit 100K Per Second</h4>
+                            <div class="tr-meta"><span>⛓️ Blockchain</span><span>🕐 7 min</span><span>94K views</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trending-row">
+                        <div class="tr-num">03</div>
+                        <div class="tr-body">
+                            <h4>NVIDIA Blackwell Ultra GPU Outperforms Previous Gen by 340% — Full Benchmark</h4>
+                            <div class="tr-meta"><span>💻 Tech</span><span>🕐 12 min</span><span>88K views</span></div>
+                        </div>
+                    </div>
+                    <div class="trending-row">
+                        <div class="tr-num">04</div>
+                        <div class="tr-body">
+                            <h4>Google DeepMind's AlphaFold 4 Solves the Protein Folding Problem — Again, Better</h4>
+                            <div class="tr-meta"><span>🤖 AI</span><span>🕐 10 min</span><span>76K views</span></div>
+                        </div>
+                    </div>
+                    <div class="trending-row">
+                        <div class="tr-num">05</div>
+                        <div class="tr-body">
+                            <h4>Tesla's Solar Roof v4 Now Costs Less Than a Standard Roof — Is It Worth It?</h4>
+                            <div class="tr-meta"><span>⚡ Green Tech</span><span>🕐 6 min</span><span>62K views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:24px"><a href="news.html" class="btn btn-outline">View All Stories →</a></div>
+            </div>
+
+            <!-- Sidebar -->
+            <div>
+                <div class="sidebar-widget reveal">
+                    <h3>🔥 Topics to Follow</h3>
+                    <div class="tag-cloud">
+                        <span class="tag-pill">Artificial Intelligence</span>
+                        <span class="tag-pill">Cybersecurity</span>
+                        <span class="tag-pill">Cloud Computing</span>
+                        <span class="tag-pill">Blockchain</span>
+                        <span class="tag-pill">Quantum Computing</span>
+                        <span class="tag-pill">AR / VR</span>
+                        <span class="tag-pill">5G Networks</span>
+                        <span class="tag-pill">IoT</span>
+                        <span class="tag-pill">Robotics</span>
+                        <span class="tag-pill">Green Tech</span>
+                        <span class="tag-pill">Space Tech</span>
+                        <span class="tag-pill">Biotech</span>
+                    </div>
+                </div>
+                <div class="sidebar-widget reveal">
+                    <h3>📊 Live Stats</h3>
+                    <div style="display:flex;flex-direction:column;gap:14px">
+                        <div>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-secondary);margin-bottom:6px">
+                                <span>AI Articles Today</span><span
+                                    style="color:var(--primary);font-weight:700">+42</span></div>
+                            <div style="height:4px;background:var(--border2);border-radius:99px;overflow:hidden">
+                                <div
+                                    style="width:78%;height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:99px">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-secondary);margin-bottom:6px">
+                                <span>Security Alerts</span><span style="color:var(--accent);font-weight:700">+18</span>
+                            </div>
+                            <div style="height:4px;background:var(--border2);border-radius:99px;overflow:hidden">
+                                <div
+                                    style="width:45%;height:100%;background:linear-gradient(90deg,var(--accent),#f97316);border-radius:99px">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-secondary);margin-bottom:6px">
+                                <span>Cloud Updates</span><span style="color:#a78bfa;font-weight:700">+27</span></div>
+                            <div style="height:4px;background:var(--border2);border-radius:99px;overflow:hidden">
+                                <div
+                                    style="width:60%;height:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:99px">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-secondary);margin-bottom:6px">
+                                <span>Startup News</span><span style="color:#fbbf24;font-weight:700">+31</span></div>
+                            <div style="height:4px;background:var(--border2);border-radius:99px;overflow:hidden">
+                                <div
+                                    style="width:65%;height:100%;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:99px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-widget reveal">
+                    <h3>🗓️ Upcoming Events</h3>
+                    <div style="display:flex;flex-direction:column;gap:14px">
+                        <div style="display:flex;gap:12px;align-items:flex-start">
+                            <div
+                                style="background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:8px;padding:6px 10px;text-align:center;min-width:44px;flex-shrink:0">
+                                <div style="font-size:0.7rem;font-weight:700;letter-spacing:1px">MAR</div>
+                                <div style="font-size:1.1rem;font-weight:900;line-height:1">12</div>
+                            </div>
+                            <div>
+                                <div style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">GTC 2026 —
+                                    NVIDIA Developer Conference</div>
+                                <div style="font-size:0.76rem;color:var(--text-muted)">San Jose, CA</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:12px;align-items:flex-start">
+                            <div
+                                style="background:linear-gradient(135deg,#7c3aed,#a78bfa);border-radius:8px;padding:6px 10px;text-align:center;min-width:44px;flex-shrink:0">
+                                <div style="font-size:0.7rem;font-weight:700;letter-spacing:1px">MAR</div>
+                                <div style="font-size:1.1rem;font-weight:900;line-height:1">18</div>
+                            </div>
+                            <div>
+                                <div style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">WWDC 2026 —
+                                    Apple Developer Conference</div>
+                                <div style="font-size:0.76rem;color:var(--text-muted)">Cupertino, CA</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:12px;align-items:flex-start">
+                            <div
+                                style="background:linear-gradient(135deg,#10b981,#059669);border-radius:8px;padding:6px 10px;text-align:center;min-width:44px;flex-shrink:0">
+                                <div style="font-size:0.7rem;font-weight:700;letter-spacing:1px">APR</div>
+                                <div style="font-size:1.1rem;font-weight:900;line-height:1">05</div>
+                            </div>
+                            <div>
+                                <div style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">RSA Conference
+                                    — Cybersecurity Summit</div>
+                                <div style="font-size:0.76rem;color:var(--text-muted)">San Francisco, CA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Topic Tiles -->
+    <section class="section">
+        <div class="section-header reveal">
+            <span class="section-tag">Browse</span>
+            <h2 class="section-title">Explore by <span>Topic</span></h2>
+        </div>
+        <div class="topics-mosaic reveal">
+            <a href="news.html" class="topic-tile" style="background:linear-gradient(135deg,#0a1a4a,#1a0a4a)">
+                <div class="topic-tile-icon">🤖</div>
+                <div class="topic-tile-name">Artificial Intelligence</div>
+                <div class="topic-tile-count">2,847 articles</div>
+                <span class="topic-tile-arrow">→</span>
+            </a>
+            <a href="news.html" class="topic-tile" style="background:linear-gradient(135deg,#2a0a14,#1a0a2a)">
+                <div class="topic-tile-icon">🔒</div>
+                <div class="topic-tile-name">Cybersecurity</div>
+                <div class="topic-tile-count">1,532 articles</div>
+                <span class="topic-tile-arrow">→</span>
+            </a>
+            <a href="news.html" class="topic-tile" style="background:linear-gradient(135deg,#0a2a1a,#0a1a2a)">
+                <div class="topic-tile-icon">☁️</div>
+                <div class="topic-tile-name">Cloud Computing</div>
+                <div class="topic-tile-count">1,218 articles</div>
+                <span class="topic-tile-arrow">→</span>
+            </a>
+            <a href="news.html" class="topic-tile" style="background:linear-gradient(135deg,#1a1a0a,#2a1a0a)">
+                <div class="topic-tile-icon">📱</div>
+                <div class="topic-tile-name">Gadgets &amp; Devices</div>
+                <div class="topic-tile-count">987 articles</div>
+                <span class="topic-tile-arrow">→</span>
+            </a>
+            <a href="news.html" class="topic-tile" style="background:linear-gradient(135deg,#0a1a2a,#1a2a3a)">
+                <div class="topic-tile-icon">⛓️</div>
+                <div class="topic-tile-name">Blockchain &amp; Web3</div>
+                <div class="topic-tile-count">743 articles</div>
+                <span class="topic-tile-arrow">→</span>
+            </a>
+            <a href="news.html" class="topic-tile" style="background:linear-gradient(135deg,#1a0a2a,#2a0a1a)">
+                <div class="topic-tile-icon">🚀</div>
+                <div class="topic-tile-name">Startups</div>
+                <div class="topic-tile-count">1,104 articles</div>
+                <span class="topic-tile-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Newsletter -->
+    <section class="section">
+        <div class="h2-newsletter reveal">
+            <div>
+                <h2>Get the Weekly Deep Dive</h2>
+                <p>Every Sunday — 5 long reads, 1 exclusive interview, and the week's biggest tech stories explained in
+                    plain English.</p>
+            </div>
+            <form class="h2-nl-form" id="newsletterForm">
+                <input type="email" placeholder="your@email.com" required />
+                <button type="submit">Subscribe Free</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo" style="margin-bottom:0">
+                    <img src="logo.webp" alt="NexTech" style="height:32px;width:auto;object-fit:contain" />
+                </a>
+                <p>The world's leading technology news and digital services platform.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">𝕏</a><a href="#" class="social-icon">in</a>
+                    <a href="#" class="social-icon">⌨</a><a href="#" class="social-icon">▶</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Content</h4>
+                <ul>
+                    <li><a href="news.html">Latest News</a></li>
+                    <li><a href="tech.html">Technology</a></li>
+                    <li><a href="article.html">AI &amp; ML</a></li>
+                    <li><a href="news.html">Cybersecurity</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">News API</a></li>
+                    <li><a href="services.html">Analytics</a></li>
+                    <li><a href="services.html">Newsletter</a></li>
+                    <li><a href="services.html">Press Release</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NexTech News. All rights reserved.</p>
+            <div style="display:flex;gap:16px"><a href="#">Privacy</a><a href="#">Terms</a><a
+                    href="contact.html">Support</a></div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Scroll to top">↑</button>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -26,7 +26,14 @@
             <img src="logo.webp" alt="NexTech Logo" />
         </a>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+        <div class="nav-dropdown" id="homeDropdown">
+      <div class="nav-dropdown-trigger" id="homeDropdownTrigger">
+        Home <span class="nav-dropdown-arrow">▼</span>
+      </div>
+      <div class="nav-dropdown-menu">
+        <a href="home2.html"><span class="dd-icon">🏡</span> Home 2</a>
+        
+    </div>
             <a href="news.html">News</a>
             <a href="tech.html">Technology</a>
             <a href="services.html" class="active">Services</a>
@@ -40,7 +47,10 @@
         </div>
     </nav>
     <div class="nav-mobile" id="mobileNav">
-        <a href="index.html">🏠 Home</a>
+      <a href="index.html">🏠 Home</a>
+  <a href="home2.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🏡 Home 2</a>
+  <a href="dashboard.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 📊 Dashboard</a>
+  <a href="login.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🔑 Login</a>
         <a href="news.html">📰 News</a>
         <a href="tech.html">💻 Technology</a>
         <a href="services.html">⚙️ Services</a>

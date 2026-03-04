@@ -23,7 +23,13 @@
     <img src="logo.webp" alt="NexTech Logo" />
   </a>
   <div class="nav-links">
-    <a href="index.html" class="active">Home</a>
+<div class="nav-dropdown" id="homeDropdown">
+      <div class="nav-dropdown-trigger active" id="homeDropdownTrigger">
+        Home <span class="nav-dropdown-arrow">▼</span>
+      </div>
+      <div class="nav-dropdown-menu">
+        <a href="home2.html"><span class="dd-icon">🏡</span> Home 2</a>
+    </div>
     <a href="news.html">News</a>
     <a href="tech.html">Technology</a>
     <a href="services.html">Services</a>
@@ -40,7 +46,10 @@
 
 <!-- Mobile Nav -->
 <div class="nav-mobile" id="mobileNav">
-  <a href="index.html">🏠 Home</a>
+<a href="index.html">🏠 Home</a>
+  <a href="home2.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🏡 Home 2</a>
+  <a href="dashboard.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 📊 Dashboard</a>
+  <a href="login.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🔑 Login</a>
   <a href="news.html">📰 News</a>
   <a href="tech.html">💻 Technology</a>
   <a href="services.html">⚙️ Services</a>
@@ -126,7 +135,7 @@
     <!-- Card 1 -->
     <article class="card reveal card-item" data-category="ai">
       <div class="card-img-wrap">
-        <div class="card-img" style="background: linear-gradient(135deg,#0077cc,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:3rem;">🤖</div>
+        <img src="images/ai-article.webp" alt="AI Article" class="card-img" />
       </div>
       <div class="card-body">
         <span class="card-tag tag-ai">AI</span>
@@ -142,7 +151,7 @@
     <!-- Card 2 -->
     <article class="card reveal card-item" data-category="security">
       <div class="card-img-wrap">
-        <div class="card-img" style="background: linear-gradient(135deg,#f43f5e,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:3rem;">🔒</div>
+        <img src="images/security-article.webp" alt="Security Article" class="card-img" />
       </div>
       <div class="card-body">
         <span class="card-tag tag-security">Cybersecurity</span>
@@ -158,7 +167,7 @@
     <!-- Card 3 -->
     <article class="card reveal card-item" data-category="gadgets">
       <div class="card-img-wrap">
-        <div class="card-img" style="background: linear-gradient(135deg,#10b981,#0077cc); display:flex; align-items:center; justify-content:center; font-size:3rem;">📱</div>
+        <img src="images/gadgets-article.webp" alt="Gadgets Article" class="card-img" />
       </div>
       <div class="card-body">
         <span class="card-tag tag-gadgets">Gadgets</span>
@@ -174,7 +183,7 @@
     <!-- Card 4 -->
     <article class="card reveal card-item" data-category="cloud">
       <div class="card-img-wrap">
-        <div class="card-img" style="background: linear-gradient(135deg,#7c3aed,#a78bfa); display:flex; align-items:center; justify-content:center; font-size:3rem;">☁️</div>
+        <img src="images/cloud-article.webp" alt="Cloud Article" class="card-img" />
       </div>
       <div class="card-body">
         <span class="card-tag tag-cloud">Cloud</span>

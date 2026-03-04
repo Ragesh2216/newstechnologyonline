@@ -19,8 +19,10 @@
         display: flex;
     }
 
-    .nav-logo-text {
-        font-size: 1rem;
+    /* Logo on mobile — cap width so it fits next to hamburger */
+    .nav-logo img {
+        height: 30px;
+        max-width: 120px;
     }
 
     /* Hero */

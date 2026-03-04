@@ -49,6 +49,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ---- Home Dropdown ----
+  const homeDropdown = document.getElementById('homeDropdown');
+  const homeDropdownTrigger = document.getElementById('homeDropdownTrigger');
+  if (homeDropdown && homeDropdownTrigger) {
+    homeDropdownTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      homeDropdown.classList.toggle('open');
+    });
+    // Close when clicking a link inside dropdown
+    homeDropdown.querySelectorAll('.nav-dropdown-menu a').forEach(link => {
+      link.addEventListener('click', () => homeDropdown.classList.remove('open'));
+    });
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!homeDropdown.contains(e.target)) {
+        homeDropdown.classList.remove('open');
+      }
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') homeDropdown.classList.remove('open');
+    });
+  }
+
   // ---- Active nav link ----
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a, .nav-mobile a').forEach(link => {
@@ -109,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.classList.add('active');
         const filter = tab.dataset.filter;
         const grid = tabGroup.closest('section')?.querySelector('.cards-grid') ||
-                     tabGroup.nextElementSibling?.querySelector('.cards-grid') ||
-                     document.querySelector('.cards-grid');
+          tabGroup.nextElementSibling?.querySelector('.cards-grid') ||
+          document.querySelector('.cards-grid');
         if (grid && filter) {
           grid.querySelectorAll('.card-item').forEach(card => {
             if (filter === 'all' || card.dataset.category === filter) {
@@ -168,9 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- Contact form ----
+  // ---- Contact form (generic fallback — contact.html has its own full handler) ----
   const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
+  if (contactForm && !document.getElementById('contactName')) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = contactForm.querySelector('[type="submit"]');
@@ -222,10 +246,10 @@ function initAuth() {
 
       const pct = (strength / 5) * 100;
       strengthBar.style.width = pct + '%';
-      const colors = ['#ef4444','#f97316','#eab308','#22c55e','#10b981'];
-      const labels = ['Very Weak','Weak','Fair','Strong','Very Strong'];
-      strengthBar.style.background = colors[Math.min(strength-1, 4)] || '#666';
-      if (strengthText) strengthText.textContent = strength > 0 ? labels[Math.min(strength-1, 4)] : '';
+      const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#10b981'];
+      const labels = ['Very Weak', 'Weak', 'Fair', 'Strong', 'Very Strong'];
+      strengthBar.style.background = colors[Math.min(strength - 1, 4)] || '#666';
+      if (strengthText) strengthText.textContent = strength > 0 ? labels[Math.min(strength - 1, 4)] : '';
     });
   }
 

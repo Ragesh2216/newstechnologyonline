@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="description"
+        content="NexTech News Dashboard – Your personal reading stats, saved articles, trending topics and analytics." />
+    <title>Dashboard – NexTech News</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+        .dash-page {
+            padding: calc(var(--nav-h) + 32px) clamp(16px, 4vw, 48px) 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .dash-greeting h1 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .dash-greeting p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .dash-header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            padding: 22px 20px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .kpi-card:hover {
+            border-color: var(--border);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .kpi-card.blue::before {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .kpi-card.red::before {
+            background: linear-gradient(90deg, var(--accent), #f97316);
+        }
+
+        .kpi-card.green::before {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .kpi-card.purple::before {
+            background: linear-gradient(90deg, #7c3aed, #a78bfa);
+        }
+
+        .kpi-icon {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .kpi-val {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .kpi-label {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .kpi-delta {
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 99px;
+        }
+
+        .kpi-delta.up {
+            background: rgba(16, 185, 129, .12);
+            color: #10b981;
+        }
+
+        .kpi-delta.down {
+            background: rgba(244, 63, 94, .12);
+            color: var(--accent);
+        }
+
+        /* Dashboard grid */
+        .dash-main {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* Chart bar */
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .chart-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chart-card-header h3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .chart-period {
+            display: flex;
+            gap: 4px;
+        }
+
+        .cp-btn {
+            padding: 5px 12px;
+            border-radius: 6px;
+            background: transparent;
+            border: 1px solid var(--border2);
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-main);
+        }
+
+        .cp-btn.active {
+            background: rgba(0, 170, 255, .12);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 140px;
+        }
+
+        .bar-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            height: 100%;
+        }
+
+        .bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .bar:hover::after {
+            content: attr(data-val);
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .bar-lbl {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* Donut chart (CSS only) */
+        .donut-wrap {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .donut {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: conic-gradient(var(--primary) 0% 38%, #7c3aed 38% 62%, var(--accent) 62% 76%, #10b981 76% 88%, #fbbf24 88% 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donut::before {
+            content: '';
+            position: absolute;
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            background: var(--bg-card);
+        }
+
+        .donut-label {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .donut-label-num {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .donut-label-sub {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .dl-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .dl-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .dl-pct {
+            margin-left: auto;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Saved articles */
+        .saved-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border2);
+            align-items: flex-start;
+        }
+
+        .saved-item:last-child {
+            border-bottom: none;
+        }
+
+        .saved-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .saved-body h4 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+
+        .saved-body h4:hover {
+            color: var(--primary);
+        }
+
+        .saved-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 8px;
+        }
+
+        .saved-del {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            transition: var(--transition);
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .saved-del:hover {
+            color: var(--accent);
+            background: rgba(244, 63, 94, .1);
+        }
+
+        /* Activity feed */
+        .activity-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border2);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .act-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .act-body {
+            flex: 1;
+        }
+
+        .act-text {
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .act-text strong {
+            color: var(--text-primary);
+        }
+
+        .act-time {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        /* Sidebar widgets */
+        .dash-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Reading streak */
+        .streak-card {
+            background: linear-gradient(135deg, rgba(0, 170, 255, .08), rgba(124, 58, 237, .08));
+            border: 1px solid rgba(0, 170, 255, .2);
+            border-radius: 16px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .streak-num {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .streak-fire {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+            animation: floatNum 2s ease-in-out infinite;
+        }
+
+        @keyframes floatNum {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-6px)
+            }
+        }
+
+        .streak-label {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin: 6px 0 14px;
+        }
+
+        .streak-days {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .sd {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: var(--bg-secondary, rgba(255, 255, 255, 0.04));
+            border: 1px solid var(--border2);
+        }
+
+        .sd.done {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .sd.today {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Recommended */
+        .rec-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border2);
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .rec-item:last-child {
+            border-bottom: none;
+        }
+
+        .rec-item:hover .rec-title {
+            color: var(--primary);
+        }
+
+        .rec-num {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: rgba(0, 170, 255, .2);
+            min-width: 24px;
+        }
+
+        .rec-title {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            transition: var(--transition);
+        }
+
+        .rec-tag2 {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        /* Quick actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .qa-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .qa-btn:hover {
+            border-color: var(--primary);
+            background: rgba(0, 170, 255, .06);
+            transform: translateY(-2px);
+        }
+
+        .qa-icon {
+            font-size: 1.4rem;
+        }
+
+        .qa-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media(max-width:1024px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .dash-main {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:540px) {
+            .kpi-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .kpi-val {
+                font-size: 1.5rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <img src="logo.webp" alt="NexTech" class="preloader-logo" />
+        <div class="preloader-bar-wrap">
+            <div class="preloader-bar"></div>
+        </div>
+        <p class="preloader-text">Loading Dashboard</p>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <a href="home2.html" class="nav-logo">
+            <img src="logo.webp" alt="NexTech Logo" />
+        </a>
+        <div class="nav-links">
+            <div class="nav-dropdown" id="homeDropdown">
+                <div class="nav-dropdown-trigger" id="homeDropdownTrigger">
+                    Home2 <span class="nav-dropdown-arrow">▼</span>
+                </div>
+                <div class="nav-dropdown-menu">
+                    <a href="index.html"><span class="dd-icon">🏡</span> Home </a>
+                    
+                </div>
+            </div>
+            
+            
+            <a href="dashboard.html">dashboard</a>
+        </div>
+        <div class="nav-actions">
+            <a href="login.html" class="btn-nav-login">Sign In</a>
+            <button class="nav-hamburger" id="hamburger"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="nav-mobile" id="mobileNav">
+        <a href="home2.html">🏠 Home2</a>
+        <a href="index.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🏡 Home </a>
+        <a href="dashboard.html">✉️ dashboard</a>
+        <a href="login.html" class="btn-nav-login">Sign In</a>
+    </div>
+
+    <div class="dash-page">
+
+        <!-- Header -->
+        <div class="dash-header">
+            <div class="dash-greeting">
+                <h1>Good Evening, Reader 👋</h1>
+                <p>Tuesday, March 4, 2026 · Here's your daily tech briefing</p>
+            </div>
+            <div class="dash-header-actions">
+                <a href="news.html" class="btn btn-outline" style="padding:10px 20px;font-size:0.85rem">📰 Browse
+                    News</a>
+                <a href="login.html" class="btn btn-primary" style="padding:10px 20px;font-size:0.85rem">⚙️ My
+                    Account</a>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card blue reveal">
+                <span class="kpi-icon">📰</span>
+                <div class="kpi-val" data-count="142" data-suffix="">0</div>
+                <div class="kpi-label">Articles Read This Month</div>
+                <span class="kpi-delta up">↑ 18% vs last month</span>
+            </div>
+            <div class="kpi-card green reveal">
+                <span class="kpi-icon">⏱️</span>
+                <div class="kpi-val" data-count="38" data-suffix="h">0</div>
+                <div class="kpi-label">Reading Time This Month</div>
+                <span class="kpi-delta up">↑ 24% vs last month</span>
+            </div>
+            <div class="kpi-card purple reveal">
+                <span class="kpi-icon">🔖</span>
+                <div class="kpi-val" data-count="27" data-suffix="">0</div>
+                <div class="kpi-label">Saved Articles</div>
+                <span class="kpi-delta down">↓ 3 new this week</span>
+            </div>
+            <div class="kpi-card red reveal">
+                <span class="kpi-icon">🔥</span>
+                <div class="kpi-val" data-count="14" data-suffix="">0</div>
+                <div class="kpi-label">Day Reading Streak</div>
+                <span class="kpi-delta up">↑ Personal best!</span>
+            </div>
+        </div>
+
+        <!-- Main + Sidebar -->
+        <div class="dash-main">
+            <div>
+
+                <!-- Bar chart -->
+                <div class="chart-card reveal">
+                    <div class="chart-card-header">
+                        <h3>📈 Articles Read per Day</h3>
+                        <div class="chart-period">
+                            <button class="cp-btn active">7D</button>
+                            <button class="cp-btn">30D</button>
+                            <button class="cp-btn">All</button>
+                        </div>
+                    </div>
+                    <div class="bar-chart" id="barChart">
+                        <!-- Bars rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Donut chart — Topics -->
+                <div class="chart-card reveal">
+                    <div class="chart-card-header">
+                        <h3>🍩 Reading by Topic</h3>
+                    </div>
+                    <div class="donut-wrap">
+                        <div class="donut">
+                            <div class="donut-label">
+                                <div class="donut-label-num">142</div>
+                                <div class="donut-label-sub">articles</div>
+                            </div>
+                        </div>
+                        <div class="donut-legend">
+                            <div class="dl-item">
+                                <div class="dl-dot" style="background:var(--primary)"></div> AI &amp; Machine Learning
+                                <span class="dl-pct">38%</span>
+                            </div>
+                            <div class="dl-item">
+                                <div class="dl-dot" style="background:#7c3aed"></div> Cloud Computing <span
+                                    class="dl-pct">24%</span>
+                            </div>
+                            <div class="dl-item">
+                                <div class="dl-dot" style="background:var(--accent)"></div> Cybersecurity <span
+                                    class="dl-pct">14%</span>
+                            </div>
+                            <div class="dl-item">
+                                <div class="dl-dot" style="background:#10b981"></div> Gadgets <span
+                                    class="dl-pct">12%</span>
+                            </div>
+                            <div class="dl-item">
+                                <div class="dl-dot" style="background:#fbbf24"></div> Startups &amp; Other <span
+                                    class="dl-pct">12%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saved Articles -->
+                <div class="chart-card reveal">
+                    <div class="chart-card-header">
+                        <h3>🔖 Saved Articles</h3>
+                        <a href="news.html" style="font-size:0.82rem;color:var(--primary)">View All</a>
+                    </div>
+                    <div class="saved-item">
+                        <div class="saved-icon"
+                            style="background:linear-gradient(135deg,rgba(0,170,255,.12),rgba(124,58,237,.12))">🤖</div>
+                        <div class="saved-body">
+                            <h4>GPT-5 Achieves Human-Level Reasoning in 94% of Benchmark Tests</h4>
+                            <div class="saved-meta"><span>🕐 5 min</span><span>Mar 2, 2026</span><span
+                                    class="card-tag tag-ai" style="padding:2px 8px;font-size:0.68rem">AI</span></div>
+                        </div>
+                        <button class="saved-del" title="Remove">✕</button>
+                    </div>
+                    <div class="saved-item">
+                        <div class="saved-icon"
+                            style="background:linear-gradient(135deg,rgba(244,63,94,.12),rgba(124,58,237,.12))">🔒</div>
+                        <div class="saved-body">
+                            <h4>Zero-Day Exploit Found in Major Cloud Infrastructure — Patch Now</h4>
+                            <div class="saved-meta"><span>🕐 4 min</span><span>Mar 2, 2026</span><span
+                                    class="card-tag tag-security"
+                                    style="padding:2px 8px;font-size:0.68rem">Security</span></div>
+                        </div>
+                        <button class="saved-del" title="Remove">✕</button>
+                    </div>
+                    <div class="saved-item">
+                        <div class="saved-icon"
+                            style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(167,139,250,.12))">☁️
+                        </div>
+                        <div class="saved-body">
+                            <h4>AWS vs Azure 2026: Which Cloud Platform Wins for Enterprises?</h4>
+                            <div class="saved-meta"><span>🕐 12 min</span><span>Feb 28, 2026</span><span
+                                    class="card-tag tag-cloud" style="padding:2px 8px;font-size:0.68rem">Cloud</span>
+                            </div>
+                        </div>
+                        <button class="saved-del" title="Remove">✕</button>
+                    </div>
+                    <div class="saved-item">
+                        <div class="saved-icon"
+                            style="background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(0,119,204,.12))">📱</div>
+                        <div class="saved-body">
+                            <h4>Apple Vision Pro 2 Review: The AR Headset That Changes Everything</h4>
+                            <div class="saved-meta"><span>🕐 8 min</span><span>Mar 1, 2026</span><span
+                                    class="card-tag tag-gadgets"
+                                    style="padding:2px 8px;font-size:0.68rem">Gadgets</span></div>
+                        </div>
+                        <button class="saved-del" title="Remove">✕</button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="chart-card reveal">
+                    <div class="chart-card-header">
+                        <h3>⚡ Recent Activity</h3>
+                    </div>
+                    <div class="activity-item">
+                        <div class="act-icon" style="background:rgba(0,170,255,.12)">📖</div>
+                        <div class="act-body">
+                            <div class="act-text">You read <strong>"NVIDIA Blackwell Ultra GPU — Full
+                                    Benchmark"</strong></div>
+                            <div class="act-time">2 minutes ago · 12 min read</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="act-icon" style="background:rgba(16,185,129,.12)">🔖</div>
+                        <div class="act-body">
+                            <div class="act-text">You saved <strong>"Ethereum 3.0 Goes Live: Zero Gas Fees"</strong>
+                            </div>
+                            <div class="act-time">18 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="act-icon" style="background:rgba(251,191,36,.12)">👍</div>
+                        <div class="act-body">
+                            <div class="act-text">You liked <strong>"Y Combinator W26 Cohort: 10 Startups to
+                                    Watch"</strong></div>
+                            <div class="act-time">1 hour ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="act-icon" style="background:rgba(124,58,237,.12)">📧</div>
+                        <div class="act-body">
+                            <div class="act-text">Your weekly digest <strong>"NexTech Top 5 — March 4"</strong> was
+                                delivered</div>
+                            <div class="act-time">Today at 8:00 AM</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="act-icon" style="background:rgba(244,63,94,.12)">🔔</div>
+                        <div class="act-body">
+                            <div class="act-text">Alert triggered: <strong>"Cybersecurity"</strong> keyword matched 3
+                                new articles</div>
+                            <div class="act-time">Today at 7:32 AM</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="dash-sidebar">
+
+                <!-- Streak -->
+                <div class="streak-card reveal">
+                    <span class="streak-fire">🔥</span>
+                    <div class="streak-num" data-count="14" data-suffix="">0</div>
+                    <div class="streak-label">Day Reading Streak — Keep it up!</div>
+                    <div class="streak-days">
+                        <div class="sd done">M</div>
+                        <div class="sd done">T</div>
+                        <div class="sd done">W</div>
+                        <div class="sd done">T</div>
+                        <div class="sd today">F</div>
+                        <div class="sd">S</div>
+                        <div class="sd">S</div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="chart-card reveal" style="padding:20px">
+                    <div class="chart-card-header" style="margin-bottom:16px">
+                        <h3>⚡ Quick Actions</h3>
+                    </div>
+                    <div class="quick-actions">
+                        <a href="news.html" class="qa-btn"><span class="qa-icon">📰</span><span class="qa-label">Browse
+                                News</span></a>
+                        <a href="services.html" class="qa-btn"><span class="qa-icon">📡</span><span
+                                class="qa-label">News API</span></a>
+                        <a href="contact.html" class="qa-btn"><span class="qa-icon">✉️</span><span
+                                class="qa-label">Newsletter</span></a>
+                        <a href="login.html" class="qa-btn"><span class="qa-icon">⚙️</span><span
+                                class="qa-label">Settings</span></a>
+                    </div>
+                </div>
+
+                <!-- Recommended -->
+                <div class="chart-card reveal">
+                    <div class="chart-card-header">
+                        <h3>✨ Recommended For You</h3>
+                    </div>
+                    <div class="rec-item">
+                        <div class="rec-num">1</div>
+                        <div>
+                            <div class="rec-title">Quantum Computing Hits Commercial Milestone — IBM Unveils 2000-Qubit
+                                Chip</div>
+                            <div class="rec-tag2">🔬 Quantum · 10 min read</div>
+                        </div>
+                    </div>
+                    <div class="rec-item">
+                        <div class="rec-num">2</div>
+                        <div>
+                            <div class="rec-title">Google's NotebookLM Gets AI Voice Podcast Generation — Is This the
+                                Future?</div>
+                            <div class="rec-tag2">🤖 AI · 6 min read</div>
+                        </div>
+                    </div>
+                    <div class="rec-item">
+                        <div class="rec-num">3</div>
+                        <div>
+                            <div class="rec-title">The Real Cost of a Cloud Migration: A 2026 Breakdown</div>
+                            <div class="rec-tag2">☁️ Cloud · 14 min read</div>
+                        </div>
+                    </div>
+                    <div class="rec-item">
+                        <div class="rec-num">4</div>
+                        <div>
+                            <div class="rec-title">Open-Source LLMs Are Now Beating GPT-4 — Here's the State of Play
+                            </div>
+                            <div class="rec-tag2">🤖 AI · 8 min read</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topics followed -->
+                <div class="chart-card reveal">
+                    <div class="chart-card-header">
+                        <h3>🏷️ Followed Topics</h3>
+                    </div>
+                    <div class="tag-cloud">
+                        <span class="tag-pill" style="border-color:rgba(0,170,255,.4);color:var(--primary)">AI ✓</span>
+                        <span class="tag-pill" style="border-color:rgba(124,58,237,.4);color:#a78bfa">Cloud ✓</span>
+                        <span class="tag-pill" style="border-color:rgba(244,63,94,.4);color:var(--accent)">Security
+                            ✓</span>
+                        <span class="tag-pill">Gadgets</span>
+                        <span class="tag-pill">Startups</span>
+                        <span class="tag-pill">Blockchain</span>
+                        <span class="tag-pill">IoT</span>
+                        <span class="tag-pill">Quantum</span>
+                    </div>
+                    <div style="margin-top:14px"><a href="#" style="font-size:0.82rem;color:var(--primary)">+ Manage
+                            topics</a></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (minimal) -->
+    <footer
+        style="background:var(--bg-card);border-top:1px solid var(--border2);padding:20px clamp(16px,4vw,48px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.82rem;color:var(--text-muted)">
+        <span>© 2026 NexTech News. All rights reserved.</span>
+        <div style="display:flex;gap:16px"><a href="#" style="color:var(--text-muted)">Privacy</a><a href="#"
+                style="color:var(--text-muted)">Terms</a><a href="contact.html"
+                style="color:var(--text-muted)">Support</a></div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Scroll to top">↑</button>
+    <script src="js/main.js"></script>
+    <script>
+        // Bar chart
+        const barData = [
+            { lbl: 'Mon', val: 8, color: 'var(--primary)' }, { lbl: 'Tue', val: 14, color: 'var(--primary)' },
+            { lbl: 'Wed', val: 6, color: 'var(--primary)' }, { lbl: 'Thu', val: 19, color: 'var(--primary)' },
+            { lbl: 'Fri', val: 11, color: 'var(--secondary)' }, { lbl: 'Sat', val: 4, color: 'var(--secondary)' },
+            { lbl: 'Sun', val: 7, color: 'var(--accent)' }
+        ];
+        const max = Math.max(...barData.map(d => d.val));
+        const chart = document.getElementById('barChart');
+        if (chart) {
+            barData.forEach(d => {
+                const wrap = document.createElement('div'); wrap.className = 'bar-wrap';
+                const bar = document.createElement('div'); bar.className = 'bar';
+                const pct = Math.round((d.val / max) * 100);
+                bar.style.cssText = `height:${pct}%;background:linear-gradient(180deg,${d.color},${d.color}99);margin-top:auto`;
+                bar.setAttribute('data-val', d.val + ' articles');
+                const lbl = document.createElement('div'); lbl.className = 'bar-lbl'; lbl.textContent = d.lbl;
+                wrap.appendChild(bar); wrap.appendChild(lbl);
+                chart.appendChild(wrap);
+            });
+        }
+        // Chart period buttons
+        document.querySelectorAll('.cp-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.cp-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        // Delete saved items
+        document.querySelectorAll('.saved-del').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const item = this.closest('.saved-item');
+                item.style.opacity = '0'; item.style.transform = 'translateX(20px)';
+                item.style.transition = 'all 0.3s ease';
+                setTimeout(() => item.remove(), 300);
+            });
+        });
+    </script>
+</body>
+
+</html>

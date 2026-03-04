@@ -261,7 +261,18 @@
             <img src="logo.webp" alt="NexTech Logo" />
         </a>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+        <div class="nav-dropdown" id="homeDropdown">
+      <div class="nav-dropdown-trigger" id="homeDropdownTrigger">
+        Home <span class="nav-dropdown-arrow">▼</span>
+      </div>
+      <div class="nav-dropdown-menu">
+        <a href="home2.html"><span class="dd-icon">🏡</span> Home 2</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="dashboard.html"><span class="dd-icon">📊</span> Dashboard</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="login.html"><span class="dd-icon">🔑</span> Login</a>
+      </div>
+    </div>
             <a href="news.html">News</a>
             <a href="tech.html">Technology</a>
             <a href="services.html">Services</a>
@@ -276,7 +287,10 @@
     </nav>
 
     <div class="nav-mobile" id="mobileNav">
-        <a href="index.html">🏠 Home</a>
+      <a href="index.html">🏠 Home</a>
+  <a href="home2.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🏡 Home 2</a>
+  <a href="dashboard.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 📊 Dashboard</a>
+  <a href="login.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🔑 Login</a>
         <a href="news.html">📰 News</a>
         <a href="tech.html">💻 Technology</a>
         <a href="services.html">⚙️ Services</a>
@@ -325,7 +339,18 @@
         <div class="footer-bottom" style="border-top:1px solid var(--border)">
             <p>© 2026 NexTech News. All rights reserved.</p>
             <div style="display:flex;gap:16px">
-                <a href="index.html">Home</a>
+            <div class="nav-dropdown" id="homeDropdown">
+      <div class="nav-dropdown-trigger" id="homeDropdownTrigger">
+        Home <span class="nav-dropdown-arrow">▼</span>
+      </div>
+      <div class="nav-dropdown-menu">
+        <a href="home2.html"><span class="dd-icon">🏡</span> Home 2</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="dashboard.html"><span class="dd-icon">📊</span> Dashboard</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="login.html"><span class="dd-icon">🔑</span> Login</a>
+      </div>
+    </div>
                 <a href="contact.html">Contact</a>
             </div>
         </div>
