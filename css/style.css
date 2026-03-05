@@ -52,6 +52,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   min-width: 320px;
+  padding-top: var(--nav-h);
 }
 
 a {
@@ -1011,7 +1012,7 @@ select {
 /* ---- Footer ---- */
 .footer {
   background: #1e293b;
-  border-top: 1px solid var(--border2);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: clamp(40px, 6vw, 80px) clamp(16px, 5vw, 80px) 24px;
 }
 
@@ -1023,10 +1024,19 @@ select {
 }
 
 .footer-brand p {
-  color: var(--text-secondary);
+  color: #94a3b8;
   font-size: 0.9rem;
   line-height: 1.7;
-  margin: 12px 0 20px;
+  margin: 12px 0 8px;
+}
+
+.footer-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-bottom: 18px;
 }
 
 .footer-social {
@@ -1038,18 +1048,19 @@ select {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border2);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.9rem;
   transition: var(--transition);
-  color: var(--text-secondary);
+  color: #94a3b8;
+  text-decoration: none;
 }
 
 .social-icon:hover {
-  background: rgba(0, 170, 255, 0.15);
+  background: rgba(0, 119, 204, 0.2);
   border-color: var(--primary);
   color: var(--primary);
 }
@@ -1058,7 +1069,7 @@ select {
   font-family: var(--font-display);
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #e2e8f0;
   margin-bottom: 18px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1070,16 +1081,18 @@ select {
 
 .footer-col ul li a {
   font-size: 0.88rem;
-  color: var(--text-secondary);
+  color: #94a3b8;
+  text-decoration: none;
+  transition: var(--transition);
 }
 
 .footer-col ul li a:hover {
-  color: var(--primary);
+  color: #7dd3fc;
   padding-left: 4px;
 }
 
 .footer-bottom {
-  border-top: 1px solid var(--border2);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 24px;
   display: flex;
   justify-content: space-between;
@@ -1087,15 +1100,16 @@ select {
   flex-wrap: wrap;
   gap: 12px;
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: #64748b;
 }
 
 .footer-bottom a {
-  color: var(--text-muted);
+  color: #64748b;
+  text-decoration: none;
 }
 
 .footer-bottom a:hover {
-  color: var(--primary);
+  color: #7dd3fc;
 }
 
 /* ---- Scroll to Top ---- */
