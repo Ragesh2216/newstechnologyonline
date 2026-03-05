@@ -131,367 +131,424 @@
         <img src="logo.webp" alt="NexTech" class="preloader-logo" />
         <div class="preloader-bar-wrap">
             <div class="preloader-bar"></div>
+
+
+
+
+
+
+
+
+
+
         </div>
         <p class="preloader-text">Loading News</p>
     </div>
 
-    <nav class="navbar" id="navbar">
-        <a href="index.html" class="nav-logo">
-            <img src="logo.webp" alt="NexTech Logo" />
-        </a>
-        <div class="nav-links">
-        <div class="nav-dropdown" id="homeDropdown">
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.webp" alt="NexTech Logo" />
+  </a>
+  <div class="nav-links">
+    <div class="nav-dropdown" id="homeDropdown">
       <div class="nav-dropdown-trigger" id="homeDropdownTrigger">
-        Home <span class="nav-dropdown-arrow">▼</span>
+        Home <span class="nav-dropdown-arrow">&#9660;</span>
       </div>
       <div class="nav-dropdown-menu">
-        <a href="home2.html"><span class="dd-icon">🏡</span> Home 2</a>
-       
+        <a href="home2.html"><span class="dd-icon">&#127969;</span> Home 2</a>
+      </div>
     </div>
-            <a href="news.html" class="active">News</a>
-            <a href="tech.html">Technology</a>
-            <a href="services.html">Services</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <div class="nav-actions">
-            <a href="login.html" class="btn-nav-login">Sign In</a>
-            <button class="nav-hamburger" id="hamburger"
-                aria-label="Menu"><span></span><span></span><span></span></button>
-        </div>
-    </nav>
-    <div class="nav-mobile" id="mobileNav">
-      <a href="index.html">🏠 Home</a>
-  <a href="home2.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🏡 Home 2</a>
-  <a href="dashboard.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 📊 Dashboard</a>
-  <a href="login.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">└ 🔑 Login</a>
-        <a href="news.html">📰 News</a>
-        <a href="tech.html">💻 Technology</a>
-        <a href="services.html">⚙️ Services</a>
-        <a href="about.html">👥 About</a>
-        <a href="contact.html">✉️ Contact</a>
-        <a href="login.html" class="btn-nav-login">Sign In</a>
+    <a href="news.html" class="active">News</a>
+    <a href="tech.html">Technology</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" class="btn-nav-login">Login</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<!-- Mobile Nav -->
+<div class="nav-mobile" id="mobileNav">
+  <a href="index.html">&#127968; Home</a>
+  <a href="home2.html" style="padding-left:28px;font-size:0.85rem;opacity:0.8">&#9492; &#127969; Home 2</a>
+  <a href="news.html">&#128240; News</a>
+  <a href="tech.html">&#128187; Technology</a>
+  <a href="services.html">&#9881;&#65039; Services</a>
+  <a href="about.html">&#128101; About</a>
+  <a href="contact.html">&#9993;&#65039; Contact</a>
+  <a href="login.html" class="btn-nav-login">Login</a>
+</div>
+
+
+<div class="nav-dropdown-menu">
+        <a href="home2.html"><span class="dd-icon">&#127969;</span> Home 2</a>
+      </div>
     </div>
+    <a href="news.html" class="active">News</a>
+    <a href="tech.html">Technology</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" class="btn-nav-login">Login</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-    <div class="ticker-wrap">
-        <div class="ticker-label">🔴 LIVE</div>
-        <div class="ticker-track">
-            <span class="ticker-item">GPT-5 launches with unprecedented capabilities <span>•</span></span>
-            <span class="ticker-item">Samsung Galaxy S27 Ultra spotted in FCC filings <span>•</span></span>
-            <span class="ticker-item">Quantum computing startup QNova raises $800M <span>•</span></span>
-            <span class="ticker-item">EU passes landmark AI regulation bill <span>•</span></span>
-            <span class="ticker-item">SpaceX Starship completes first commercial payload mission <span>•</span></span>
-        </div>
-    </div>
 
-    <!-- Page Header -->
-    <div class="page-header">
-        <span class="section-tag">All Stories</span>
-        <h1>Technology <span class="text-gradient">News</span></h1>
-        <p>Explore the latest in AI, cybersecurity, cloud computing, gadgets, and more.</p>
-        <div class="search-bar-wrap">
-            <input type="text" placeholder="Search news, topics, companies..." />
-            <button>Search</button>
-        </div>
-    </div>
 
-    <!-- Filter Tabs -->
-    <section class="section" style="padding-top:32px;padding-bottom:0">
-        <div class="filter-tabs" id="newsFilters">
-            <button class="filter-tab active" data-filter="all">All</button>
-            <button class="filter-tab" data-filter="ai">🤖 AI</button>
-            <button class="filter-tab" data-filter="security">🔒 Cybersecurity</button>
-            <button class="filter-tab" data-filter="cloud">☁️ Cloud</button>
-            <button class="filter-tab" data-filter="gadgets">📱 Gadgets</button>
-            <button class="filter-tab" data-filter="startups">🚀 Startups</button>
-            <button class="filter-tab" data-filter="blockchain">⛓️ Blockchain</button>
-            <button class="filter-tab" data-filter="iot">🌐 IoT</button>
-        </div>
-    </section>
-
-    <section class="section" style="padding-top:24px">
-        <div class="news-layout">
-            <!-- Main content -->
-            <div>
-                <div class="grid-3 cards-grid">
-                    <article class="card card-item reveal" data-category="ai">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#0077cc,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                🤖</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-ai">AI</span>
-                            <h3 class="card-title">GPT-5 Achieves Human-Level Reasoning in 94% of Benchmarks</h3>
-                            <p class="card-excerpt">OpenAI's breakthrough model changes everything we know about
-                                language models and their real-world applications.</p>
-                            <div class="card-meta"><span>🕐 5 min</span><span>Mar 2, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="card card-item reveal" data-category="security">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#f43f5e,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                🔒</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-security">Cybersecurity</span>
-                            <h3 class="card-title">Critical Zero-Day Flaw Found in Cloud Infrastructure Globally</h3>
-                            <p class="card-excerpt">Security researchers issued emergency patches as the exploit was
-                                found actively targeting enterprise cloud services.</p>
-                            <div class="card-meta"><span>🕐 4 min</span><span>Mar 2, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="card card-item reveal" data-category="cloud">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                ☁️</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-cloud">Cloud</span>
-                            <h3 class="card-title">Google Cloud Launches Region in Africa—A Historic First</h3>
-                            <p class="card-excerpt">Nairobi joins the global cloud map as Google makes its largest
-                                infrastructure investment in the continent's history.</p>
-                            <div class="card-meta"><span>🕐 6 min</span><span>Mar 1, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="card card-item reveal" data-category="gadgets">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#10b981,#0077cc);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                📱</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-gadgets">Gadgets</span>
-                            <h3 class="card-title">Samsung Galaxy S27 Ultra: First Hands-On Photos Surface</h3>
-                            <p class="card-excerpt">Leaked renders reveal a radical redesign with a periscope ultra-wide
-                                lens and a massive 7000mAh battery.</p>
-                            <div class="card-meta"><span>🕐 3 min</span><span>Feb 28, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="card card-item reveal" data-category="startups">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#fbbf24,#f43f5e);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                🚀</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-startups">Startups</span>
-                            <h3 class="card-title">NeuroLink AI Valued at $4.2B After $500M Series B Round</h3>
-                            <p class="card-excerpt">Brain-computer interface startup secures funding to accelerate
-                                clinical trials and consumer device production.</p>
-                            <div class="card-meta"><span>🕐 7 min</span><span>Feb 27, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="card card-item reveal" data-category="blockchain">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#fb923c,#fbbf24);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                ⛓️</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-blockchain">Blockchain</span>
-                            <h3 class="card-title">Ethereum 3.0 Goes Live with 100K TPS — The DeFi Revolution Continues
-                            </h3>
-                            <p class="card-excerpt">After years of development, ETH 3.0 officially launches on mainnet,
-                                making decentralized finance accessible to billions.</p>
-                            <div class="card-meta"><span>🕐 8 min</span><span>Feb 26, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="card card-item reveal" data-category="iot">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#22d3ee,#0077cc);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                🌐</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-iot">IoT</span>
-                            <h3 class="card-title">1 Trillion IoT Devices Expected Online by 2027—Security at Risk</h3>
-                            <p class="card-excerpt">Industry analysts warn that the explosive growth of connected
-                                devices is outpacing global security infrastructure.</p>
-                            <div class="card-meta"><span>🕐 5 min</span><span>Feb 25, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="card card-item reveal" data-category="ai">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#0077cc,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                🧬</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-ai">AI</span>
-                            <h3 class="card-title">AlphaFold 3 Maps 200 Million Protein Structures in 72 Hours</h3>
-                            <p class="card-excerpt">DeepMind's latest achievement could accelerate drug discovery by
-                                decades, according to leading biologists.</p>
-                            <div class="card-meta"><span>🕐 9 min</span><span>Feb 24, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="card card-item reveal" data-category="security">
-                        <div class="card-img-wrap">
-                            <div class="card-img"
-                                style="background:linear-gradient(135deg,#f43f5e,#fb923c);display:flex;align-items:center;justify-content:center;font-size:3rem">
-                                🛡️</div>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag tag-security">Cybersecurity</span>
-                            <h3 class="card-title">New AI-Powered Firewall Blocks 99.9% of Cyberattacks in Real-Time
-                            </h3>
-                            <p class="card-excerpt">CyberShield's machine-learning firewall uses behavioral analysis to
-                                stop sophisticated threats before they execute.</p>
-                            <div class="card-meta"><span>🕐 6 min</span><span>Feb 23, 2026</span></div>
-                            <a href="article.html" class="card-read-more">Read More →</a>
-                        </div>
-                    </article>
-                </div>
-                <!-- Pagination -->
-                <div class="pagination reveal">
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                    <button class="page-btn">4</button>
-                    <button class="page-btn">...</button>
-                    <button class="page-btn">12</button>
-                    <button class="page-btn" style="width:auto;padding:0 16px;border-radius:99px">Next →</button>
-                </div>
-            </div>
-
-            <!-- Sidebar -->
-            <aside>
-                <div class="sidebar-widget reveal">
-                    <h3>🔥 Trending Now</h3>
-                    <div class="trending-item">
-                        <span class="trending-num">01</span>
-                        <div>
-                            <a href="article.html" class="trending-title">GPT-5 changes the AI landscape forever</a>
-                            <div class="trending-date">Mar 2, 2026</div>
-                        </div>
-                    </div>
-                    <div class="trending-item">
-                        <span class="trending-num">02</span>
-                        <div>
-                            <a href="article.html" class="trending-title">Apple Vision Pro 2 pushes AR boundaries</a>
-                            <div class="trending-date">Mar 1, 2026</div>
-                        </div>
-                    </div>
-                    <div class="trending-item">
-                        <span class="trending-num">03</span>
-                        <div>
-                            <a href="article.html" class="trending-title">Ethereum 3.0 goes live on mainnet</a>
-                            <div class="trending-date">Feb 28, 2026</div>
-                        </div>
-                    </div>
-                    <div class="trending-item">
-                        <span class="trending-num">04</span>
-                        <div>
-                            <a href="article.html" class="trending-title">Tesla's solar charging network expands
-                                globally</a>
-                            <div class="trending-date">Feb 27, 2026</div>
-                        </div>
-                    </div>
-                    <div class="trending-item">
-                        <span class="trending-num">05</span>
-                        <div>
-                            <a href="article.html" class="trending-title">Quantum computing achieves commercial
-                                viability</a>
-                            <div class="trending-date">Feb 26, 2026</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-widget reveal">
-                    <h3>🏷️ Popular Tags</h3>
-                    <div class="tag-cloud">
-                        <span class="tag-pill">#OpenAI</span>
-                        <span class="tag-pill">#GPT5</span>
-                        <span class="tag-pill">#Cybersecurity</span>
-                        <span class="tag-pill">#CloudComputing</span>
-                        <span class="tag-pill">#MachineLearning</span>
-                        <span class="tag-pill">#Blockchain</span>
-                        <span class="tag-pill">#Apple</span>
-                        <span class="tag-pill">#Startups</span>
-                        <span class="tag-pill">#5G</span>
-                        <span class="tag-pill">#Quantum</span>
-                        <span class="tag-pill">#IoT</span>
-                        <span class="tag-pill">#AR</span>
-                        <span class="tag-pill">#NVIDIA</span>
-                        <span class="tag-pill">#Tesla</span>
-                    </div>
-                </div>
-                <div class="sidebar-widget reveal">
-                    <h3>📧 Get the Newsletter</h3>
-                    <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:14px">AI-curated daily tech
-                        digest. 1.2M+ readers.</p>
-                    <form id="sidebarNewsletterForm" style="display:flex;flex-direction:column;gap:10px">
-                        <input type="email" class="form-input" placeholder="your@email.com" required
-                            style="border-radius:99px" />
-                        <button type="submit" class="btn btn-primary" style="justify-content:center">Subscribe
-                            Free</button>
-                    </form>
-                </div>
-            </aside>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <a href="index.html" class="nav-logo"><img src="logo.webp" alt="NexTech"
-                        style="height:32px;width:auto;object-fit:contain" /></a>
-                <p>The world's leading technology news and digital services platform.</p>
-                <div class="footer-social">
-                    <a href="#" class="social-icon">𝕏</a>
-                    <a href="#" class="social-icon">in</a>
-                    <a href="#" class="social-icon">⌨</a>
-                    <a href="#" class="social-icon">▶</a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Topics</h4>
-                <ul>
-                    <li><a href="news.html">AI & ML</a></li>
-                    <li><a href="news.html">Cybersecurity</a></li>
-                    <li><a href="news.html">Cloud</a></li>
-                    <li><a href="news.html">Blockchain</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
+<div class="ticker-track">
+                <span class="ticker-item">GPT-5 launches with unprecedented capabilities <span>•</span></span>
+                <span class="ticker-item">Samsung Galaxy S27 Ultra spotted in FCC filings <span>•</span></span>
+                <span class="ticker-item">Quantum computing startup QNova raises $800M <span>•</span></span>
+                <span class="ticker-item">EU passes landmark AI regulation bill <span>•</span></span>
+                <span class="ticker-item">SpaceX Starship completes first commercial payload mission
+                    <span>•</span></span>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 NexTech News. All rights reserved.</p>
-        </div>
-    </footer>
 
-    <button id="scrollTop" aria-label="Scroll to top">↑</button>
-    <script src="js/main.js"></script>
-    <script>
-        document.getElementById('sidebarNewsletterForm')?.addEventListener('submit', e => {
-            e.preventDefault();
-            e.target.innerHTML = '<p style="color:var(--accent2);font-weight:600">🎉 Subscribed!</p>';
-        });
-        document.querySelectorAll('.page-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        
+
+
+<!-- Page Header -->
+        
+
+
+<div class="page-header">
+            <span class="section-tag">All Stories</span>
+            <h1>Technology <span class="text-gradient">News</span></h1>
+            <p>Explore the latest in AI, cybersecurity, cloud computing, gadgets, and more.</p>
+            <div class="search-bar-wrap">
+                <input type="text" placeholder="Search news, topics, companies..." />
+                <button>Search</button>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        
+
+
+<section class="section" style="padding-top:32px;padding-bottom:0">
+            <div class="filter-tabs" id="newsFilters">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="ai">🤖 AI</button>
+                <button class="filter-tab" data-filter="security">🔒 Cybersecurity</button>
+                <button class="filter-tab" data-filter="cloud">☁️ Cloud</button>
+                <button class="filter-tab" data-filter="gadgets">📱 Gadgets</button>
+                <button class="filter-tab" data-filter="startups">🚀 Startups</button>
+                <button class="filter-tab" data-filter="blockchain">⛓️ Blockchain</button>
+                <button class="filter-tab" data-filter="iot">🌐 IoT</button>
+            </div>
+        </section>
+
+        
+
+
+<section class="section" style="padding-top:24px">
+            <div class="news-layout">
+                <!-- Main content -->
+                <div>
+                    <div class="grid-3 cards-grid">
+                        <article class="card card-item reveal" data-category="ai">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#0077cc,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    🤖</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-ai">AI</span>
+                                <h3 class="card-title">GPT-5 Achieves Human-Level Reasoning in 94% of Benchmarks</h3>
+                                <p class="card-excerpt">OpenAI's breakthrough model changes everything we know about
+                                    language models and their real-world applications.</p>
+                                <div class="card-meta"><span>🕐 5 min</span><span>Mar 2, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="card card-item reveal" data-category="security">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#f43f5e,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    🔒</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-security">Cybersecurity</span>
+                                <h3 class="card-title">Critical Zero-Day Flaw Found in Cloud Infrastructure Globally
+                                </h3>
+                                <p class="card-excerpt">Security researchers issued emergency patches as the exploit was
+                                    found actively targeting enterprise cloud services.</p>
+                                <div class="card-meta"><span>🕐 4 min</span><span>Mar 2, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="card card-item reveal" data-category="cloud">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    ☁️</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-cloud">Cloud</span>
+                                <h3 class="card-title">Google Cloud Launches Region in Africa—A Historic First</h3>
+                                <p class="card-excerpt">Nairobi joins the global cloud map as Google makes its largest
+                                    infrastructure investment in the continent's history.</p>
+                                <div class="card-meta"><span>🕐 6 min</span><span>Mar 1, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="card card-item reveal" data-category="gadgets">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#10b981,#0077cc);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    📱</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-gadgets">Gadgets</span>
+                                <h3 class="card-title">Samsung Galaxy S27 Ultra: First Hands-On Photos Surface</h3>
+                                <p class="card-excerpt">Leaked renders reveal a radical redesign with a periscope
+                                    ultra-wide
+                                    lens and a massive 7000mAh battery.</p>
+                                <div class="card-meta"><span>🕐 3 min</span><span>Feb 28, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="card card-item reveal" data-category="startups">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#fbbf24,#f43f5e);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    🚀</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-startups">Startups</span>
+                                <h3 class="card-title">NeuroLink AI Valued at $4.2B After $500M Series B Round</h3>
+                                <p class="card-excerpt">Brain-computer interface startup secures funding to accelerate
+                                    clinical trials and consumer device production.</p>
+                                <div class="card-meta"><span>🕐 7 min</span><span>Feb 27, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="card card-item reveal" data-category="blockchain">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#fb923c,#fbbf24);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    ⛓️</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-blockchain">Blockchain</span>
+                                <h3 class="card-title">Ethereum 3.0 Goes Live with 100K TPS — The DeFi Revolution
+                                    Continues
+                                </h3>
+                                <p class="card-excerpt">After years of development, ETH 3.0 officially launches on
+                                    mainnet,
+                                    making decentralized finance accessible to billions.</p>
+                                <div class="card-meta"><span>🕐 8 min</span><span>Feb 26, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="card card-item reveal" data-category="iot">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#22d3ee,#0077cc);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    🌐</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-iot">IoT</span>
+                                <h3 class="card-title">1 Trillion IoT Devices Expected Online by 2027—Security at Risk
+                                </h3>
+                                <p class="card-excerpt">Industry analysts warn that the explosive growth of connected
+                                    devices is outpacing global security infrastructure.</p>
+                                <div class="card-meta"><span>🕐 5 min</span><span>Feb 25, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="card card-item reveal" data-category="ai">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#0077cc,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    🧬</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-ai">AI</span>
+                                <h3 class="card-title">AlphaFold 3 Maps 200 Million Protein Structures in 72 Hours</h3>
+                                <p class="card-excerpt">DeepMind's latest achievement could accelerate drug discovery by
+                                    decades, according to leading biologists.</p>
+                                <div class="card-meta"><span>🕐 9 min</span><span>Feb 24, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="card card-item reveal" data-category="security">
+                            <div class="card-img-wrap">
+                                <div class="card-img"
+                                    style="background:linear-gradient(135deg,#f43f5e,#fb923c);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                    🛡️</div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag tag-security">Cybersecurity</span>
+                                <h3 class="card-title">New AI-Powered Firewall Blocks 99.9% of Cyberattacks in Real-Time
+                                </h3>
+                                <p class="card-excerpt">CyberShield's machine-learning firewall uses behavioral analysis
+                                    to
+                                    stop sophisticated threats before they execute.</p>
+                                <div class="card-meta"><span>🕐 6 min</span><span>Feb 23, 2026</span></div>
+                                <a href="article.html" class="card-read-more">Read More →</a>
+                            </div>
+                        </article>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="pagination reveal">
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">...</button>
+                        <button class="page-btn">12</button>
+                        <button class="page-btn" style="width:auto;padding:0 16px;border-radius:99px">Next →</button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside>
+                    <div class="sidebar-widget reveal">
+                        <h3>🔥 Trending Now</h3>
+                        <div class="trending-item">
+                            <span class="trending-num">01</span>
+                            <div>
+                                <a href="article.html" class="trending-title">GPT-5 changes the AI landscape forever</a>
+                                <div class="trending-date">Mar 2, 2026</div>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <span class="trending-num">02</span>
+                            <div>
+                                <a href="article.html" class="trending-title">Apple Vision Pro 2 pushes AR
+                                    boundaries</a>
+                                <div class="trending-date">Mar 1, 2026</div>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <span class="trending-num">03</span>
+                            <div>
+                                <a href="article.html" class="trending-title">Ethereum 3.0 goes live on mainnet</a>
+                                <div class="trending-date">Feb 28, 2026</div>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <span class="trending-num">04</span>
+                            <div>
+                                <a href="article.html" class="trending-title">Tesla's solar charging network expands
+                                    globally</a>
+                                <div class="trending-date">Feb 27, 2026</div>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <span class="trending-num">05</span>
+                            <div>
+                                <a href="article.html" class="trending-title">Quantum computing achieves commercial
+                                    viability</a>
+                                <div class="trending-date">Feb 26, 2026</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget reveal">
+                        <h3>🏷️ Popular Tags</h3>
+                        <div class="tag-cloud">
+                            <span class="tag-pill">#OpenAI</span>
+                            <span class="tag-pill">#GPT5</span>
+                            <span class="tag-pill">#Cybersecurity</span>
+                            <span class="tag-pill">#CloudComputing</span>
+                            <span class="tag-pill">#MachineLearning</span>
+                            <span class="tag-pill">#Blockchain</span>
+                            <span class="tag-pill">#Apple</span>
+                            <span class="tag-pill">#Startups</span>
+                            <span class="tag-pill">#5G</span>
+                            <span class="tag-pill">#Quantum</span>
+                            <span class="tag-pill">#IoT</span>
+                            <span class="tag-pill">#AR</span>
+                            <span class="tag-pill">#NVIDIA</span>
+                            <span class="tag-pill">#Tesla</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget reveal">
+                        <h3>📧 Get the Newsletter</h3>
+                        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:14px">AI-curated daily
+                            tech
+                            digest. 1.2M+ readers.</p>
+                        <form id="sidebarNewsletterForm" style="display:flex;flex-direction:column;gap:10px">
+                            <input type="email" class="form-input" placeholder="your@email.com" required
+                                style="border-radius:99px" />
+                            <button type="submit" class="btn btn-primary" style="justify-content:center">Subscribe
+                                Free</button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        
+
+
+<!-- Footer -->
+        
+
+
+<footer class="footer">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo"><img src="logo.webp" alt="NexTech"
+                            style="height:32px;width:auto;object-fit:contain" /></a>
+                    <p>The world's leading technology news and digital services platform.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon">𝕏</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">⌨</a>
+                        <a href="#" class="social-icon">▶</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Topics</h4>
+                    <ul>
+                        <li><a href="news.html">AI & ML</a></li>
+                        <li><a href="news.html">Cybersecurity</a></li>
+                        <li><a href="news.html">Cloud</a></li>
+                        <li><a href="news.html">Blockchain</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 NexTech News. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <button id="scrollTop" aria-label="Scroll to top">↑</button>
+        <script src="js/main.js"></script>
+        <script>
+            document.getElementById('sidebarNewsletterForm')?.addEventListener('submit', e => {
+                e.preventDefault();
+                e.target.innerHTML = '<p style="color:var(--accent2);font-weight:600">🎉 Subscribed!</p>';
             });
-        });
-    </script>
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        </script>
 </body>
 
 </html>
