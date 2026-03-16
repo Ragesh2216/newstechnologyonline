@@ -366,8 +366,8 @@
       <!-- LOGIN FORM -->
       <div class="auth-form form-active" id="loginForm">
         <div class="social-logins">
-          <button class="social-btn">G Google</button>
-          <button class="social-btn">⌨ GitHub</button>
+          <button class="social-btn" onclick="window.location.href='404.html'; return false;">G Google</button>
+          <button class="social-btn" onclick="window.location.href='404.html'; return false;">⌨ GitHub</button>
         </div>
         <div class="divider-or">or sign in with email</div>
         <form id="loginFormEl" novalidate>
@@ -382,6 +382,7 @@
           <div class="form-group">
             <label class="form-label" for="loginPassword">
               Password
+              <a href="404.html" class="forgot-link">Forgot?</a>
             </label>
             <div class="form-icon">
               <span class="form-icon-el">🔒</span>
@@ -391,21 +392,20 @@
           </div>
           <div class="checkbox-wrap">
             <input type="checkbox" id="remember" />
-            <label for="remember">Keep me signed in</label>    <a href="404" class="forgot-link">Forgot?</a>
-           
+            <label for="remember">Keep me signed in</label>
           </div>
-          <button type="submit" class="btn-login-submit" style="margin-top:18px">Sign In →</button>
+          <button type="submit" class="btn-login-submit" style="margin-top:18px" onclick="window.location.href='404.html'; return false;">Sign In →</button>
         </form>
         <div class="auth-switch">
-          Don't have an account? <button id="switchToSignup">Create one free</button>
+          Don't have an account? <button id="switchToSignup" onclick="window.location.href='404.html'; return false;">Create one free</button>
         </div>
       </div>
 
       <!-- SIGNUP FORM -->
       <div class="auth-form" id="signupForm">
         <div class="social-logins">
-          <button class="social-btn">G Google</button>
-          <button class="social-btn">⌨ GitHub</button>
+          <button class="social-btn" onclick="window.location.href='404.html'; return false;">G Google</button>
+          <button class="social-btn" onclick="window.location.href='404.html'; return false;">⌨ GitHub</button>
         </div>
         <div class="divider-or">or sign up with email</div>
         <form id="signupFormEl" novalidate>
@@ -440,13 +440,13 @@
           </div>
           <div class="checkbox-wrap">
             <input type="checkbox" id="terms" required />
-            <label for="terms">I agree to the <a href="#">Terms of Service</a> &amp; <a href="#">Privacy
+            <label for="terms">I agree to the <a href="404.html">Terms of Service</a> &amp; <a href="404.html">Privacy
                 Policy</a></label>
           </div>
-          <button type="submit" class="btn-login-submit" style="margin-top:18px">Create Account →</button>
+          <button type="submit" class="btn-login-submit" style="margin-top:18px" onclick="window.location.href='404.html'; return false;">Create Account →</button>
         </form>
         <div class="auth-switch">
-          Already have an account? <button id="switchToLogin">Sign in</button>
+          Already have an account? <button id="switchToLogin" onclick="window.location.href='404.html'; return false;">Sign in</button>
         </div>
       </div>
     </div>
@@ -458,7 +458,7 @@
 <!-- Footer minimal -->
   <div
     style="text-align:center; padding:16px; font-size:0.8rem; color:var(--text-muted); border-top:1px solid var(--border2);">
-    © 2026 NexTech News · <a href="#" style="color:var(--text-muted)">Privacy</a> · <a href="#"
+    © 2026 NexTech News · <a href="404.html" style="color:var(--text-muted)">Privacy</a> · <a href="404.html"
       style="color:var(--text-muted)">Terms</a>
   </div>
 
