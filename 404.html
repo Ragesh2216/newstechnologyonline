@@ -316,8 +316,8 @@
 
         <!-- Search bar -->
         <form class="err-search" id="errSearch">
-            <input type="text" id="errQuery" placeholder="Search for something else…" />
-            <button type="submit" onclick="window.location.href='404.html'; return false;">Search 🔍</button>
+            <input type="text" id="errQuery" placeholder="Search for something else…" required />
+            <button type="submit">Search 🔍</button>
         </form>
 
         <!-- CTA buttons -->
@@ -386,7 +386,7 @@
         document.getElementById('errSearch').addEventListener('submit', function (e) {
             e.preventDefault();
             const q = document.getElementById('errQuery').value.trim();
-            if (q) window.location.href = 'news.html';
+            if (q) window.location.href = '404.html';
         });
     </script>
 </body>

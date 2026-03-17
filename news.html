@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -226,10 +226,10 @@
             <span class="section-tag">All Stories</span>
             <h1>Technology <span class="text-gradient">News</span></h1>
             <p>Explore the latest in AI, cybersecurity, cloud computing, gadgets, and more.</p>
-            <div class="search-bar-wrap">
-                <input type="text" placeholder="Search news, topics, companies..." />
-                <button onclick="window.location.href='404.html'; return false;">Search</button>
-            </div>
+            <form class="search-bar-wrap" onsubmit="window.location.href='404.html'; return false;">
+                <input type="text" placeholder="Search news, topics, companies..." required />
+                <button type="submit">Search</button>
+            </form>
         </div>
 
         <!-- Filter Tabs -->
@@ -483,7 +483,7 @@
                         <form id="sidebarNewsletterForm" style="display:flex;flex-direction:column;gap:10px">
                             <input type="email" class="form-input" placeholder="your@email.com" required
                                 style="border-radius:99px" />
-                            <button type="submit" class="btn btn-primary" style="justify-content:center" onclick="window.location.href='404.html'; return false;">Subscribe
+                            <button type="submit" class="btn btn-primary" style="justify-content:center">Subscribe
                                 Free</button>
                         </form>
                     </div>
@@ -542,6 +542,7 @@
             document.getElementById('sidebarNewsletterForm')?.addEventListener('submit', e => {
                 e.preventDefault();
                 e.target.innerHTML = '<p style="color:var(--accent2);font-weight:600">🎉 Subscribed!</p>';
+                setTimeout(() => { window.location.href = '404.html'; }, 1000);
             });
             document.querySelectorAll('.page-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
